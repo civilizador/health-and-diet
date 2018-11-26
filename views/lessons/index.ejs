@@ -1,0 +1,97 @@
+<% include ../partials/header_login     %>
+
+
+    <div class='row'> 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h2> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
+             <div class='row'> 
+                  <div class="col-lg-6 col-md-6 col-sm-6 profile_header1">
+                      <h2> NUTRITION ACADEMY  </h2>  
+                  </div>
+                 <div  class="col-lg-6 col-md-6 col-sm-6 profile_header1">
+                       <i class="far fa-user-circle"></i>    
+                  </div>
+              </div>
+         </div>
+    </div>
+
+    <div class='row body_courses_page'>
+      <div class="col-lg-3 col-md-3 col-sm-12 course_list">
+          <select data-live-search="true" class="form-control">
+              <option>Mustard</option>
+          </select>
+      </div>
+
+        <div class="col-lg-7 col-md-7 col-sm-12 all_cources_list_index">
+             <div class="container">
+                <% cources.forEach(function(cources){ %>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class='row'>
+                            <div class='col-lg-3 col-md-3 col-sm-12 course_list_left_image'>
+                                
+                            </div>
+                            
+                            <div class='col-lg-8 col-md-8 col-sm-8 course_list_description'>
+                                <div class='row'> 
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        
+                                    </div>
+                                    
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <% )} %> 
+             </div>
+        </div>
+  
+
+    <!-- Main DIV class container -->
+     <br>
+    <div class="container index">
+        <!-- Div class row. Inside of which we will run forEach loop and print all ticket details.-->
+        <div class="row" style="margin-bottom: 40;">
+                  
+          <!-- Listing all tickets using forEach loop -->
+            
+            <% tickets.forEach(function(ticket){ %>
+                <% if(ticket.state !== "arch") { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        
+                        <ul class="list-group">
+                            <% if (ticket.state==="monitoring") { %>
+                            <li  style="background-color:  #f7cc56; font-size: 1.4em" class="list-group-item active"><a style = 'color: white' class="header  pull-right" class="header" href="/tickets/<%=ticket._id%>"> <%= ticket.ticket %> </a></li>
+                           <% }  else if (ticket.state==="external") { %> 
+                               <li  style="background-color: #bce8f1; font-size: 1.4em" class="list-group-item active"><a style = 'color: white' class="header  pull-right" class="header" href="/tickets/<%=ticket._id%>"> <%= ticket.ticket %> </a></li>
+                           <% } else { %> 
+                                  <li  style="background-color:#eab9c2; font-size: 1.4em; " class="list-group-item active"><a  style = 'color: white' class="header  pull-right" href="/tickets/<%=ticket._id%>"> <%= ticket.ticket %> </a></li>
+                           <% }  %>  
+                           <% const fqdnList = (JSON.stringify(ticket.fqdn)).split(',')%> 
+                              <li class="list-group-item"> <span> Created at: </span>  <%= JSON.stringify(ticket.created).substring(1, 11) %> <span class='pull-right'>owner:      <a   href="/user/<%= ticket.ownerId%>"><%= ticket.owner%>  </a>  </span>   </li>
+                              <li class="list-group-item"> <span> FQDN: </span><h5 class="fields"> <%= fqdnList[0].substring(2, 24)+"..."  %> <br> <%= fqdnList[1].substring(0, fqdnList[1].length-2)+"..."  %> </h5> </li>
+                              <li class="list-group-item"> <span> Assign to Group: </span><h5 class="fields"> <%= ticket.group %>  </h5></li>
+                              <li class="list-group-item"> <span> Ticket status: </span><h5 class="fields"> <%= ticket.state %>  </h5></li>
+                              <li class="list-group-item"> <span> Carier Information: </span><h5 class="fields"> <%= ticket.carrier %>  </h5> </li>
+                              <li class="list-group-item"> <span> Ticket Last Action: </span> <h5 class="fields"> <%= ticket.last.substring(0,47) + "..." %>  </h5> </li>
+                              <li class="list-group-item"> <span> Ticket Next Action: </span> <h5 class="fields"> <%= ticket.next.substring(0,67) + "..." %>   </h5> </li>
+                        </ul>
+                        <br>
+                    </div> 
+                <% }%>
+            <% }) %>
+                   
+    <!-- End of the main DIV class row -->
+    </div>
+    <hr>
+    <!-- End of the main DIV class container index -->
+    </div>
+
+
+ <% include ../partials/footer %>
+ 

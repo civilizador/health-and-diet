@@ -1,0 +1,81 @@
+<% ../include partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">
+       Добавить Урок.
+    </div>
+    <!--Creating a "NEW BLOG POST" form which will be submited as a POST request to /blogs("INDEX" route) -->
+    <form class="ui form" action="/tickets" method="POST">
+   <% var timedate=Date.now; %>
+        <div class="field">
+            <label>Добавлен</label>
+                <input  id='createDate' required type=date name="lesson[created]" >
+        </div>
+        
+        <div class="field">
+            <label>Название Урока</label>
+                <input  id='title'   type=text name="lesson[title]" >
+        </div>
+        
+        <div class="field">
+            <label>Категория Курса</label>
+                <select name="lesson[category]">
+                     <% category.forEach(function(category){ %>
+                     <option><%=category%></option>
+                     <% }) %>
+                </select>
+        </div>
+        
+        <div class="field">
+            <label>Добавить в Курс</label>
+                <select name="lesson[related_to_course]">
+                     <% course.forEach(function(course){ %>
+                     <option><%=course%></option>
+                     <% }) %>
+                </select>
+        </div>
+        
+        <div class="field">
+            <label>Количество Подразделов</label>
+                <input required   type=text  name="lesson[parts_count]"> 
+        </div>
+        
+        <div class="field">
+            <label>Продолжительность Урока</label>
+                <input required   type=text  name="lesson[lenght]"> 
+        </div>
+    
+        <div class="field">
+            <label>Курс Обновлен:</label>
+               <input   readonly="readonly"  type=text  name="course[updated]" value="<%= Date().substring(0, 16) %>">   
+        </div>
+         
+        <div class="field">
+            <label>Описание Урока</label>
+                <textarea  name="course[description]"> </textarea>
+        </div>
+        
+        <div class="field">
+            <label>Добавить Часть</label>
+                <textarea> </textarea>
+            <button class='btn btn-lg btn-success'> Добавить </button>
+        </div>
+        
+        <div class="field">
+            <label>URL Уроков</label>
+                <textarea  name="lesson[lesson_parts_scr]"> </textarea>
+        </div>
+        
+        
+            <input type="submit" class="positive ui big button">
+          
+    </form>
+    
+</div>
+
+
+
+
+<% ../include partials/footer %>
+
+

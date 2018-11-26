@@ -1,0 +1,27 @@
+0000000000000000000000000000000000000000 98e85f1a350a79c9319a22e95443b4d6b6616570 Asim <salimli.asim@gmail.com> 1518946689 +0000	commit (initial): initial commit
+98e85f1a350a79c9319a22e95443b4d6b6616570 b3e879931199d906c9013a6bd795ddbba6a00921 Asim <salimli.asim@gmail.com> 1518947386 +0000	commit: add start script
+b3e879931199d906c9013a6bd795ddbba6a00921 135d02df250bbd6e3a425d54a81d770d7134b5c1 Asim <salimli.asim@gmail.com> 1518948070 +0000	commit: modified db hostname to local host
+135d02df250bbd6e3a425d54a81d770d7134b5c1 ab0e2934d2447784f2b65177f4fc6a0e9779eb7a Asim <salimli.asim@gmail.com> 1518948312 +0000	commit: modified db hostname to local host
+ab0e2934d2447784f2b65177f4fc6a0e9779eb7a 6bf5ccfa0a89344a0d733882c9e5cef182c486b0 Asim <salimli.asim@gmail.com> 1518951186 +0000	commit: modified db hostname to local host
+6bf5ccfa0a89344a0d733882c9e5cef182c486b0 1395dfd1a851932383874a3b5074371c49a3ee52 Asim <salimli.asim@gmail.com> 1518952121 +0000	commit: index.ejs
+1395dfd1a851932383874a3b5074371c49a3ee52 79aaf838c332831625b5eabc2dc8d804a0b77863 Asim <salimli.asim@gmail.com> 1519167829 +0000	commit: Updated UI
+79aaf838c332831625b5eabc2dc8d804a0b77863 2c890fe861fe9bf00cc997e30c688567c4d17e3c Asim <salimli.asim@gmail.com> 1519168457 +0000	commit: initial commit
+2c890fe861fe9bf00cc997e30c688567c4d17e3c f3da57a53fe475e57ab52e84f4b95276299a81c1 Asim <salimli.asim@gmail.com> 1519176777 +0000	commit: interface upgrade
+f3da57a53fe475e57ab52e84f4b95276299a81c1 7a6f499089d1e2e0a3b36883494e9cd755bd86c2 Asim <salimli.asim@gmail.com> 1519176970 +0000	commit: interface upgrade
+7a6f499089d1e2e0a3b36883494e9cd755bd86c2 79393defe561929f8fc79063178069c862f31d5a Asim <salimli.asim@gmail.com> 1521265920 +0000	commit: Demo
+79393defe561929f8fc79063178069c862f31d5a fbdf008a3a5b70233f46932fd61f52ea8d94a8e6 Asim <salimli.asim@gmail.com> 1521266435 +0000	commit: final update
+fbdf008a3a5b70233f46932fd61f52ea8d94a8e6 7f3a82ca8ad9a0f1e8f8a3bdd4ff0a4c87de151c Asim <salimli.asim@gmail.com> 1521356136 +0000	commit: final update
+7f3a82ca8ad9a0f1e8f8a3bdd4ff0a4c87de151c fcfc0348496a8f2f1fcf295e432353bd9d7aee81 Asim <salimli.asim@gmail.com> 1521429934 +0000	commit: final update
+fcfc0348496a8f2f1fcf295e432353bd9d7aee81 fff0216fa5e403c82676f58e2603cf58b9e5e57c Asim <salimli.asim@gmail.com> 1521430202 +0000	commit: final update
+fff0216fa5e403c82676f58e2603cf58b9e5e57c f7f441624e0aa8a12b36b5490b6e85fe9c3d298b Asim <salimli.asim@gmail.com> 1521474999 +0000	commit: final update
+f7f441624e0aa8a12b36b5490b6e85fe9c3d298b 0220f30d5dc22f606079faee487be3b30038ba3f Asim <salimli.asim@gmail.com> 1521566942 +0000	commit: final update
+0220f30d5dc22f606079faee487be3b30038ba3f 25717fab2394e56df3321b2dfaea9ebb12651c41 Asim <salimli.asim@gmail.com> 1521567401 +0000	commit: final update
+25717fab2394e56df3321b2dfaea9ebb12651c41 717dc8d3424d8796bd6e5a29dfe43ea4c1822aa8 Asim <salimli.asim@gmail.com> 1521569572 +0000	commit: final update
+717dc8d3424d8796bd6e5a29dfe43ea4c1822aa8 e91457b701d45c6f9c8704c09e987e3da4b44bbf Asim <salimli.asim@gmail.com> 1522215459 +0000	commit: My first commit
+e91457b701d45c6f9c8704c09e987e3da4b44bbf 21b4695ea06ff32d782f75ac1ff7f97c32d4e2c3 Asim <salimli.asim@gmail.com> 1522278728 +0000	commit: My first commit
+21b4695ea06ff32d782f75ac1ff7f97c32d4e2c3 60a136ce911da0eae920662b9510b25324e61f9f Asim <salimli.asim@gmail.com> 1522338305 +0000	commit: Finnal commit
+60a136ce911da0eae920662b9510b25324e61f9f 1ebf10264f1136fb653a66480582bf7b26315f86 Asim <salimli.asim@gmail.com> 1522338939 +0000	commit: Login page modify
+1ebf10264f1136fb653a66480582bf7b26315f86 4231684b2244f0044baf93a9527f0f598da4a0c6 Asim <salimli.asim@gmail.com> 1522339204 +0000	commit: Login page modify
+4231684b2244f0044baf93a9527f0f598da4a0c6 c75171a093560f2d2412a183e3179300a751a55a Asim <salimli.asim@gmail.com> 1531512394 +0000	commit: restyling
+c75171a093560f2d2412a183e3179300a751a55a 45f7282c772c9a1a4ae76324e208914953403515 Asim <salimli.asim@gmail.com> 1531526392 +0000	commit: restyling
+45f7282c772c9a1a4ae76324e208914953403515 1d379af13040f49110538182a064c235f3312db9 Asim <salimli.asim@gmail.com> 1536872166 +0000	commit: 1.Routes in separate js file 2.Ping test results displaying successfuly 3.arrow next to host changes color depending on resuts

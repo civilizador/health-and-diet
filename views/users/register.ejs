@@ -1,0 +1,81 @@
+<% include ../partials/header_login     %>
+
+
+<div class="container" >
+    <div id='login_container'  class='row'>
+        
+        <div class='col-lg-6'>
+            
+        </div>
+        
+        <div class='col-lg-6'>
+            
+            <form action="/register" method="POST" style="width: 80 %;" >
+                <div class="form-group">
+                    <label for="name_register">Istifadəçi Adı</label>
+                    <input type="text" name='username' class="form-control" id="user_name_register" placeholder="Istifadəçi Adı">
+                </div>
+                <div class="form-group">
+                    <label for="name_register">Ad</label>
+                    <input type="text" name='name' class="form-control" id="name_register" placeholder="Ad">
+                </div>
+                <div class="form-group">
+                    <label for="name_register">Soy Adi</label>
+                    <input type="text" name='lastname' class="form-control" id="last_register"  placeholder="Soy Adi">
+                </div>
+                <div class="form-group">
+                    <label for="email_register">Email address</label>
+                    <input type="email" name='email' class="form-control" id="email_register"  placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password_register1">Password</label>
+                    <input type="password" name='password' class="form-control" id="password_register1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="password_register2">Repeat password</label>
+                    <input type="password" name='password2' class="form-control" id="password_register2" placeholder="Password">
+                </div>
+                <div class="field">
+                    <div>
+                      <input  type="checkbox" required >
+                      <label style="padding-top: 3px;">I agree to the Terms and Conditions</label>
+                    </div>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LfHkU8UAAAAAEloQAoHwUgwjkBmiHjUdltNWLoW"></div>
+                <button type="submit" class="btn btn-success submitButton" >Submit</button>
+                 <p>Уже зарегистрированы? <b><a href='/login'>Войти в систему</a></b></p> <a href="/login" class='pull-right btn btn-warning'>Назад</a>
+            </form>
+            
+            <div id='divCheckPasswordMatch'></div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+<script>
+
+function checkPasswordMatch() {
+    const password = $("#password_register1").val();
+    const confirmPassword = $("password_register2").val();
+    const submitRegister = $("#submitRegister")
+    if (password != confirmPassword)
+       {
+           $("#divCheckPasswordMatch").html("Passwords do not match!");
+            submitRegister.prop('disabled', true);
+       }
+    else
+        {
+            $("#divCheckPasswordMatch").html("Passwords match.");
+            submitRegister.prop('disabled', false);
+        }
+}
+
+
+//   $("#password_register2, #password_register2").change(checkPasswordMatch);
+
+</script>
+
+<% include ../partials/footer %>

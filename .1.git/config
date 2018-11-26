@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "heroku"]
+	url = https://git.heroku.com/sleepy-thicket-71619.git
+	fetch = +refs/heads/*:refs/remotes/heroku/*
+[remote "origin"]
+	url = https://github.com/civilizador/ticket_master.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
