@@ -1,17 +1,18 @@
-const  passport =         require("passport");
-const  mongoose =         require("mongoose");
-const  Course =            require("../models/coursemod");
-const  User =             require("../models/usermod");
-const  middleware  =      require("../middleware.js");
-const  flash    =         require("connect-flash");
+const  passport =           require("passport");
+const  mongoose =           require("mongoose");
+const  Course =             require("../models/coursemod");
+const  Lesson =             require("../models/lessonmod")
+const  User =               require("../models/usermod");
+const  middleware  =        require("../middleware.js");
+const  flash    =           require("connect-flash");
 
 module.exports = (app) => {
-    //   show register form page
+            // 1.   show register form page
                 app.get("/register",function(req, res) {
                     res.render("users/register");
                 });
            
-            //   handle sign up logic
+            // 2.   handle sign up logic
                 app.post("/register", function(req, res) {
                     const newUser = new User({
                             username: req.body.username,
@@ -36,7 +37,7 @@ module.exports = (app) => {
                 });
         
            
-            //  show login form
+            // 3. show login form
             
                 app.get("/login",function(req, res) {
                     res.render("users/login",{currentUser:req.user});
@@ -50,7 +51,7 @@ module.exports = (app) => {
                     }), function(req, res){
                 });
                 
-            // logout route
+            // 4. logout route
         
                 app.get("/logout", function(req, res){
                     req.logout();
@@ -58,7 +59,7 @@ module.exports = (app) => {
                 });
     
     
-            // USER SHOW ROUTE 
+            // 5. USER SHOW ROUTE 
                 app.get("/user/:id", function(req, res){
                     User.findById(req.params.id, function(err, foundUser) {
                         if(err) {
@@ -74,7 +75,7 @@ module.exports = (app) => {
                 });
                     
          
-            // USER Edit FORM
+            // 6. USER Edit FORM
             
                 app.get("/user/:id/edit", function(req, res){
                     User.findById(req.params.id, function(err, foundUser) {
@@ -86,7 +87,9 @@ module.exports = (app) => {
                         } 
                     })
                 });
-             
+            
+            // 7. USER Update Route
+            
                 app.put("/user/:id", function(req, res){
                  // find and update the correct campground
                     User.findByIdAndUpdate(req.params.id, req.body.userDet, function(err, foundUser){
@@ -98,6 +101,13 @@ module.exports = (app) => {
                         }
                     });
                 });
+                
+            // 8. Admin Panel Page
+        
+                app.get("/adminpanel",function(req, res) {
+                    res.render("users/adminpanel")
+                });
+               
                 
                 function escapeRegex(text) {
                     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

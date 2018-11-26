@@ -24,4 +24,4 @@
         }
     );
 
-    module.exports = mongoose.model("Cource",courseSchema);
+    module.exports = mongoose.model("Course",courseSchema);

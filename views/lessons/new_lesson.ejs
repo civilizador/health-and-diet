@@ -5,7 +5,7 @@
        Добавить Урок.
     </div>
     <!--Creating a "NEW BLOG POST" form which will be submited as a POST request to /blogs("INDEX" route) -->
-    <form class="ui form" action="/tickets" method="POST">
+    <form class="ui form" action="/lessons_directory" method="POST">
    <% var timedate=Date.now; %>
         <div class="field">
             <label>Добавлен</label>
@@ -18,7 +18,7 @@
         </div>
         
         <div class="field">
-            <label>Категория Курса</label>
+            <label>Категория Урока</label>
                 <select name="lesson[category]">
                      <% category.forEach(function(category){ %>
                      <option><%=category%></option>

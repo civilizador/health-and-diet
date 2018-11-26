@@ -7,8 +7,8 @@
        Добавить Курс.
     </div>
     <!--Creating a "NEW BLOG POST" form which will be submited as a POST request to /blogs("INDEX" route) -->
-    <form class="ui form" action="/tickets" method="POST">
-   <% var timedate=Date.now; %>
+    <form class="ui form" action="/all_courses" method="POST">
+        <% var timedate=Date.now; %>
         <div class="field">
             <label>Добавлен</label>
                 <input  id='createDate' required type=date name="course[created]" >
@@ -21,7 +21,7 @@
         
         <div class="field">
             <label> Картинка </label>
-                <input  id='title'   type=text name="course[title]" >
+                <input  id='image'   type=text name="course[image]" >
         </div>
         
         <div class="field">
@@ -67,14 +67,13 @@
         <div class="field">
             <label>Добавить Урок</label>
                 <textarea> </textarea>
-            <button class='btn btn-lg btn-success'> Добавить </button>
+            <button id='add_lesson_id_to_course' class='btn btn-lg btn-success'> Добавить </button>
         </div>
         
         <div class="field">
             <label>ID Уроков</label>
                 <textarea  name="course[lessons_scr]"> </textarea>
         </div>
-        
         
             <input type="submit" class="positive ui big button">
           

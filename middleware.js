@@ -4,28 +4,29 @@ var Comment = require("./models/commod.js");
 
 var middlewareObj={};
 
-middlewareObj.checkOwnership = function ( req, res, next )
-{ 
-    if(req.isAuthenticated()) 
-    {
-        Shift.findById(req.params.id, function(err, foundCampground)
-            {   if(err) {
-               req.flash("error", "Ticket not found");
-               res.redirect("back");}
-                 else{
-                   //   does this user owns camps
-                    if(foundCampground.author.id.equals(req.user._id))
-                    { next();}
-                    else { req.flash("error", "You don't have permission to do that");
-                res.redirect("back");}
+    middlewareObj.checkOwnership = function ( req, res, next ){ 
+        if(req.isAuthenticated()) {
+            Course.findById(req.params.id, function(err, foundCourse) {   
+                if(err) {
+                    req.flash("error", "Ticket not found");
+                    res.redirect("back");
+                }   else {
+                        //   does this user owns camps
+                        if(foundCourse.author.id.equals(req.user._id)){ 
+                            next();
+                        } else { 
+                            req.flash("error", "You don't have permission to do that");
+                            res.redirect("back");
+                            }
                     }
             }); 
-    }                   else {     req.flash("error", "You need to be logged in to do that");
-        res.redirect("back");} 
- };
+        }   else {
+                req.flash("error", "You need to be logged in to do that");
+                res.redirect("back");
+            } 
+    };
  
-middlewareObj.isAdmin = function ( req, res, next )
-    { 
+    middlewareObj.isAdmin = function ( req, res, next ){ 
         if(req.isAuthenticated() && req.user.isAdmin === true) {
                res.render("users/adminpanel")
             }  else { 
