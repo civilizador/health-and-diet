@@ -20,7 +20,9 @@
     <div class='row body_courses_page'>
       <div class="col-lg-3 col-md-3 col-sm-12 course_list">
           <select data-live-search="true" class="form-control">
-              <option>Mustard</option>
+                <% category.forEach(function(category){ %>
+                    <option> <%= category %> </option>
+                <% } %>
           </select>
       </div>
 

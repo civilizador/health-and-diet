@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
     email: String,
     name: String,
     lastname: String,
-    purchasedIDs: String,
+    purchasedIDs: Array ,
     completedIDs: String,
     isAdmin: Boolean
 });

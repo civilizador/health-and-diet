@@ -34,7 +34,22 @@ var middlewareObj={};
                 res.redirect("back");
             } 
     };
-           
+    
+        middlewareObj.isPurchased = function ( req, res, next ){ 
+        if(req.isAuthenticated()) {
+            if (req.user.purchasedIDs.indexOf(req.body.id)!=-1){
+                next();
+            } else {
+                req.flash("error", "You need purchase first");
+                res.redirect("/all_courses");
+            }
+             
+        } else { 
+                req.flash("error", "You need to log in");
+                res.redirect("/login");
+        } 
+    };
+            
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();

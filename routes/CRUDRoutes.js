@@ -4,7 +4,7 @@
     const   Lesson =            require("../models/lessonmod");
     const   middleware  =       require("../middleware.js");
     const   flash    =          require("connect-flash");
-    const   groups =            ['NOC','Operations_data','Operations_Voice','Dev_Ops','Team_Leads','CS_Tier1','CS_Tier2','CS_Tier3'];
+    const   groups =            ['Course Category 1','Course Category 2','Course Category 3','Course Category 4','Course Category 5','Course Category 6','Course Category 7','Course Category 8'];
 
     module.exports = (app) => {
         //1. INDEX ROUTE
@@ -16,43 +16,49 @@
         
         //2. ALL COURSES ROUTE
             
-        app.get("/all_courses",function(req, res) { 
+        app.get("/all_courses", middleware.isLoggedIn, function(req, res) { 
             if(req.query.search){  
                 const regex = new RegExp(escapeRegex(req.query.search), 'gi');
                     Course.find({title: regex}, function(err, courses){
                         if(err) {
-                            throw err   
+                            throw err;   
                         } else { 
-                            res.render("lessons/index",{courses: courses,currentUser:req.user});
+                            res.render("lessons/index",{courses: courses, groups:groups, currentUser:req.user});
                         }
                     });
             } else {
-                    Course.find({}, function(err, courses){
+                        Course.find({}, function(err, courses){
                             if(err) {
-                                throw err
+                                throw err;
                             } else { 
-                                res.render("lessons/index",{courses: courses,currentUser:req.user}); 
-                            }
+                                    Lesson.find({}, function(err, lessons){
+                                        if(err) {
+                                            throw err;   
+                                        } else { 
+                                            res.render("lessons/index",{courses: courses, groups:groups,lessons:lessons, currentUser:req.user}); 
+                                        }
+                                    });
+                                }
                         });
                     } 
         });  
         
         //3. ALL LESSONS ROUTE
         
-        app.get("/all_lessons",function(req, res) { 
+        app.get("/all_lessons", middleware.isLoggedIn, function(req, res) { 
             if(req.query.search){  
                 const regex = new RegExp(escapeRegex(req.query.search), 'gi');
                     Lesson.find({title: regex}, function(err, lessons){
                         if(err) {
-                            throw err   
+                            throw err;   
                         } else { 
-                            res.render("lessons/index",{lessons: lessons,currentUser:req.user});
+                            res.render("lessons/lessons_directory",{lessons: lessons,currentUser:req.user});
                         }
                     });
             } else {
                     Lesson.find({}, function(err, lessons){
                             if(err) {
-                                throw err
+                                throw err;
                             } else { 
                                 res.render("lessons/lessons_directory",{lessons: lessons,currentUser:req.user}); 
                             }
@@ -67,7 +73,8 @@
             //  create a new ticket.
             Course.create(req.body.ticket, function(err,ticket){
                 if(err){
-                    throw err , console.log("Something is wrong") 
+                    throw err,
+                    console.log("Something is wrong") ;
                 }
             //redirect back
                 else {
