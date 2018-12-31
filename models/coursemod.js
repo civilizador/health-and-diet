@@ -9,7 +9,6 @@
                 author: String,
                 updated: String,
                 category: String,
-                lessons: Array,
                 description: String,
                 lessons_count: Number,
                 price: Number,

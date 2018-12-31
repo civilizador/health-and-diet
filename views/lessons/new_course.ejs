@@ -10,49 +10,57 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <link rel="stylesheet" href="/stylesheets/create_course.css">
+
 <br>
-<center><h1> Добавить Новый Урок</h1>
+<center><h1> Добавить Новый Курс</h1>
 </center>
 <div class='container'>
   
-    <form action="/create_lesson" method="POST">
+    <form action="/create_course" method="POST">
   
         <div class="form-group">
             <label>Добавлен</label>
-                <input   class='form-control' required type=date name="lesson[created]" >
+                <input   class='form-control' required type=date name="course[created]" >
         </div>
         
          <div  class="form-group">
-            <label>Добавить урок в следующий курс</label>
-                <select class='form-control' name="lesson[related_to_course]">
-                     <% courses_list.forEach(function(course){ %>
-                     <option><%=course%></option>
+            <label>Категория Урока</label>
+                <select class='form-control' name="course[category]">
+                     <% categories.forEach(function(category){ %>
+                     <option><%=category%></option>
                      <% }) %>
                 </select>
         </div>
+        
         <div class="form-group">
-            <label>Номер Урока</label>
-                <input class='form-control'  id='title'   type=text name="lesson[number]" >
-        </div>
-        <div class="form-group">
-            <label>Фото в описании урока.</label>
-                <input class='form-control'  id='title' placeholder='введите имя фотографии на сервере. Например fitnes'  type=text name="lesson[image]" >
+            <label>Фото в описании курса.</label>
+                <input class='form-control'  id='title' placeholder='введите имя фотографии на сервере. Например diet1'  type=text name="course[image]" >
         </div>
         
         <div class="form-group">
-            <label>Количество Частей в Уроке </label>
-                <input class='form-control'  required   type=text  name="lesson[parts_count]"> 
+            <label>Название Курса</label>
+                <input class='form-control'  id='title'   type=text name="course[title]" >
+        </div>
+        
+         <div class="form-group">
+            <label>Автор Курса</label>
+                <input class='form-control'  id='title'   type=text name="course[author]" >
         </div>
         
         <div class="form-group">
-            <label>Продолжительность Урока</label>
-                <input class='form-control'  required   type=text  name="lesson[lenght]"> 
+            <label>Количество Уроков в Курсе</label>
+                <input class='form-control'  required   type=text  name="course[lessons_count]"> 
+        </div>
+        
+        <div class="form-group">
+            <label>Продолжительность Курса</label>
+                <input class='form-control'  required   type=text  name="course[lenght]"> 
         </div>
     
          
         <div class="form-group">
-            <label>Описание Урока</label>
-                <textarea rows="4" cols="10" class='form-control'   name="lesson[description]"> </textarea>
+            <label>Описание Курса</label>
+                <textarea rows="4" cols="10" class='form-control'   name="course[description]"> </textarea>
         </div>
         
             <input type="submit" class="btn btn-lg btn-success">

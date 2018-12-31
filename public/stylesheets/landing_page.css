@@ -17,9 +17,10 @@
 }
 
 .catalog_btn {
-  width: 98%;
-  margin:  auto;
-  height: 65px;
+  width: 100%;
+   height: 65px;
+   text-align: center !important;
+   margin-top: 1em;
 }
 
 .welcome_video_module {
@@ -31,8 +32,8 @@
 
 .counter {
   float: left;
-  width:32%;
-  margin-right:1%;
+  width:31%;
+  margin-right:2.2%;
   height:110px;
   text-align: center;
   display:flex;
@@ -40,13 +41,75 @@
 
 .counter_span {
   font-size: 3em;
-}
-
-i.fa-user-circle {
-  font-size: 3em !important;
-  margin-left: 70% !important;
+  height: 50%;
+  text-align: center !important;
+  color: white !important;
+  padding-left: 0 auto !important;
 }
 
 .profile_header1 {
-  padding: 5px;
+  background-color: white !important;
+   height: 65px;
+   width: 95% !important;
+   margin-right: 1px !important;
+   padding-right: 1px !important;
 }
+
+.whiteBackground {
+  background-color: white !important;
+}
+
+.folder_icon {
+  font-size: 3rem;
+}
+
+.profilePhoto {
+  margin-right:15px; 
+}
+
+.marginTop {
+  margin-left: 40px; ;
+  margin-top: 10vh !important;
+  height: auto;
+}
+
+.counter_module {
+  background-color: white!important;
+  height: 350px !important;
+  padding: 5px;
+  
+}
+
+
+.no_link_outlook {
+  color: gray !important;
+  text-decoration: none !important;
+}
+.no_link_outlook:hover {
+    color: white !important;
+
+}
+
+.all_lessons_select {
+   background-color: white!important;
+  height: 150px !important;
+  padding: 15px;
+  width: 35vw;
+}
+.all_lessons_select_list {
+  width: 60vw;
+  float: right !important;
+}
+img.course_description_image {
+  height: 80%;
+  margin: 20px;
+  border-radius: 5px;
+  float: left;
+}
+.row.course_list_wrapper {
+  height: 250px;
+  background-color: white;
+  float: right;
+  margin-left: 5vw;
+  margin-bottom: 10vh;
+ }

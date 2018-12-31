@@ -9,12 +9,21 @@
     width: 100% !important;
 }
 .header_on_login {
-    border-bottom: 3px solid silver;
+    border-bottom: 2px solid silver;
     text-align: center;
+    width: 100% !important;
 }
 .login_page_wrapper {
-    height: 90vh;
+    height: 100vh;
 }
 .footer {
     margin-top: 15px;
+}
+.blueHeading {
+    color: #0000A0;
+    margin-bottom: 20vh;
+}
+.marginCenter {
+    margin-left:38%;
+    width: auto;
 }

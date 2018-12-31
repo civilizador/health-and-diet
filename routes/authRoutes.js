@@ -104,7 +104,7 @@ module.exports = (app) => {
                 
             // 8. Admin Panel Page
         
-                app.get("/adminpanel",function(req, res) {
+                app.get("/adminpanel",middleware.isAdmin, function(req, res) {
                     res.render("users/adminpanel")
                 });
                

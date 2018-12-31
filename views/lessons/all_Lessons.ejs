@@ -1,0 +1,62 @@
+<% include ../partials/header_login     %>
+<style>
+    body {
+        background: #eeeeee;
+        margin: 0;
+        padding:  0;
+    }
+</style>
+<div class='login_page_wrapper'>
+
+
+    <div class='row'> 
+        <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
+             <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
+                    <div class="float-left">
+                          <img width='50px' src='/images/logo.png' class='float-left '> 
+                          <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
+                    </div>
+                    <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
+         </div> 
+    </div>
+    
+    <div class='row marginTop'>
+        
+        <!-- Category selecting DropDown -->
+        <div class="all_lessons_select">
+       
+            <div  class="form-group">
+              <label>Категория Урока</label>
+                    <select class='form-control'>
+                         <% courses_list.forEach(function(course){ %>
+                         <option><%=course%></option>
+                         <% }) %>
+                    </select>
+            </div>
+              
+        </div>
+         <!-- END of Category selecting DropDown -->
+        
+        <!-- All Courses -->
+            <% lessons.forEach(function(lesson){ %>
+                <div class="all_lessons_select_list">
+                    <div class='row course_list_wrapper'> 
+                        <img class='col-md-4 course_description_image' src='/images/<%= lesson.image %>.jpg'>
+                        <div class='col-md-7'>
+                            <h4><%= lesson.title %></h4>
+                            <p><%= lesson.description %></p>
+                        <div>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        
+        <!-- END of All Courses -->    
+        
+    </div>
+  
+</div>
+
+

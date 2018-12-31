@@ -8,9 +8,11 @@
                 title: String,
                 updated: String,
                 category: String,
-                related_to_course: Number,
+                related_to_course: String,
                 description: String,
                 parts_count: Number,
+                number: Number,
+                image: String,
                 completed: Boolean,
                 lenght: String,
                 lesson_parts_ids: [

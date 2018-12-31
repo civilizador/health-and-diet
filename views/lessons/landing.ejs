@@ -1,51 +1,65 @@
 <% include ../partials/header_login     %>
-
+<style>
+    body {
+        background: #eeeeee;
+        margin: 0;
+        padding:  0;
+    }
+</style>
 <div class='login_page_wrapper'>
 
 
     <div class='row'> 
         <div class="col-lg-12 col-md-12 col-sm-12">
-             <h2 class='header_on_login'> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+             <h2 class='header_on_login whiteBackground'> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
-             <div class='row'> 
-                  <div class="col-lg-6 col-md-6 col-sm-6 profile_header1">
-                      <h2> NUTRITION ACADEMY  </h2>  
-                  </div>
-                 <div  class="col-lg-6 col-md-6 col-sm-6 profile_header1">
-                       <i class="far fa-user-circle"></i>    
-                  </div>
-              </div>
-         </div>
+                    <div class="float-left">
+                          <img width='50px' src='/images/logo.png' class='float-left '> 
+                          <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
+                      </div>
+                    <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
+
+         </div> 
     </div>
-    <div class='row'>
-      <div class="col-lg-3 col-md-3 col-sm-12 counter_module">
+    
+    <div class='row marginTop'>
+      <div class="col-lg-4 col-md-4 col-sm-4 counter_module">
           <div class="col-lg-12 col-md-12 col-sm-12">
-            <button class="btn btn-outline-secondary catalog_btn"> Open Catalog </button>  
-          </div>
-          <div width='400' class="col-lg-12 col-md-12 col-sm-12">
+            <div class="btn btn-outline-secondary catalog_btn">
+                 <i class="fas fa-folder-open folder_icon float-left"></i> 
+                <a class='no_link_outlook' href='/all_Courses'><div class='col-lg-6 col-md-6 col-sm-6'>
+                    ВЫБРАТЬ КАТЕГОРИЮ КУРСА <br> ВИРТУАЛЬНОГО ОБУЧЕНИЯ </div>
+                 </div></a>  
+            </div>
+          <br>
+          <div class="col-lg-12 col-md-12 col-sm-12">
                <div class="btn btn-danger counter "> 
-                 <div class='col-lg-12 col-md-12 col-sm-12 counter_span' > 0 </div>
-                 <div class="col-lg-12 col-md-12 col-sm-12"> NOT Completed </div>
+                    <div class='col-lg-12 col-md-12 col-sm-12 counter_span'> 
+                       0  
+                    </div>
                </div> 
                <div class="btn btn-warning counter"> 
-                  <div  class='col-lg-12 col-md-12 col-sm-12 counter_span' > 0 </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12"> Completed </div>
+                    <div  class='col-lg-12 col-md-12 col-sm-12 counter_span' >
+                        0 
+                    </div>
               </div> 
                <div class="btn btn-info counter">
-                  <div  class='col-lg-12 col-md-12 col-sm-12 counter_span'> 0  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">  All available </div>
+                    <div  class='col-lg-12 col-md-12 col-sm-12 counter_span'> 
+                        0  
+                    </div>
               </div> 
           </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-              <button type="button" class="btn btn-outline-warning catalog_btn">ACHIEVED CERTIFICATES</button> 
+         
+          <div class="col-lg-12 col-md-12 col-sm-12 float-left">
+            <button type="button" class="btn btn-outline-warning catalog_btn">
+                <img width='50px' src='/images/certificate2.png' class='float-left '> <h4 > ACHIEVED CERTIFICATES </h4>
+            </button> 
           </div>
       </div>
 
-      <div class="col-lg-7 col-md-7 col-sm-12 welcome_video_module">
-          <div>
-          
-          <div>
+        <div class="col-lg-7 col-md-7 col-sm-7 welcome_video_module whiteBackground">
+           
           <center>
               <video width="90%" height="320" controls>
                 <source src="movie.mp4" type="video/mp4">
