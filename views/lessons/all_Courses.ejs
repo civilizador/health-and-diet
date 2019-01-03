@@ -29,7 +29,7 @@
        
             <div  class="form-group">
               <label>Категория Урока</label>
-                    <select class='form-control'>
+                    <select id='selector_for_course' class='form-control'>
                          <% categories.forEach(function(category){ %>
                          <option><%=category%></option>
                          <% }) %>
@@ -58,5 +58,12 @@
     </div>
   
 </div>
+<script>
+    $('#selector_for_course').change(
+        function() {
+            alert( $('#selector_for_course').val() ) 
+        }
+    )
+</script>
 
-
+<% include ../partials/footer     %>

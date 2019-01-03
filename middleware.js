@@ -28,7 +28,7 @@ var middlewareObj={};
  
     middlewareObj.isAdmin = function ( req, res, next ){ 
         if(req.isAuthenticated() && req.user.isAdmin === true) {
-               res.render("users/adminpanel")
+               return next();
             }  else { 
                 req.flash("error", "You are not an Admin. Admin will be reported!");
                 res.redirect("back");

@@ -19,9 +19,27 @@
                         
                     }
             });
-            
+        
+         var lesson_list=[];
+            Lesson.find({}, function(err, lesson){ 
+                    if(err){
+                        throw err
+                    }else{
+                        lesson.forEach(function(lesson){
+                            lesson_list.push({title: lesson.title,
+                                              id: lesson._id});
+                                lesson_list = [...(new Set(lesson_list))];
+                        })
+                        
+                    }
+            });    
   
     module.exports = (app) => {
+        
+        app.get("getAllCourses",function(req,res){
+            res.send(courses_list)
+        })
+        
         //1. INDEX ROUTE
     
         app.get("/", middleware.isLoggedIn, function(req, res){ 
@@ -55,7 +73,7 @@
         
         //3.  CREATE NEW COURSE FORM
         
-            app.get("/new_course", middleware.isLoggedIn, function(req,res){
+            app.get("/new_course",middleware.isAdmin,function(req,res){
             //  create a new ticket.
               res.render("lessons/new_course", {categories:categories});
             });
@@ -64,7 +82,7 @@
 
         //4. "CREATE COURSE" ROUTE LOGIC POST REQUEST
         
-        app.post("/create_course", middleware.isLoggedIn, function(req,res){
+        app.post("/create_course",middleware.isAdmin,function(req,res){
             //  create a new ticket.
             Course.create(req.body.course, function(err,course){
                 if(err){
@@ -83,14 +101,14 @@
 
         //5.  CREATE NEW LESSON FORM
         
-            app.get("/new_lesson", middleware.isLoggedIn, function(req,res){
+            app.get("/new_lesson",middleware.isAdmin,function(req,res){
             //  create a new ticket.
                  res.render("lessons/new_lesson", {courses_list:courses_list});
             });
             
         //6. "CREATE LESSON" ROUTE LOGIC POST REQUEST     
         
-            app.post("/create_lesson", middleware.isLoggedIn, function(req,res){
+            app.post("/create_lesson", middleware.isAdmin, function(req,res){
             //  create a new ticket.
             Lesson.create(req.body.lesson, function(err,lesson){
                 if(err){
@@ -127,6 +145,17 @@
                         });
                     } 
         });         
+
+        //8.  CREATE NEW LESSON PART FORM
+        
+            app.get("/new_parts",  middleware.isLoggedIn, function(req,res){
+            //  create a new ticket.
+                res.render("lessons/new_parts", {courses_list:courses_list,lesson_list:lesson_list});
+            });
+            
+ 
+
+
 
         //4. "SHOW" ROUTE.
         app.get("/all_courses/:id", async function (req, res) {
