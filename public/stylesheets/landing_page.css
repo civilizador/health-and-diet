@@ -95,6 +95,7 @@
   height: 150px !important;
   padding: 15px;
    float: left;
+   display: table-column;
 }
 .all_lessons_select_list {
   width: 100%;
@@ -116,4 +117,5 @@ img.course_description_image {
   float: right;
   margin-left: 5vw;
   margin-bottom: 10vh;
+  display: table-column;
  }
