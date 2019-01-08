@@ -20,14 +20,14 @@
                           <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
                     </div>
                     <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
-         </div> 
+        </div> 
     </div>
     
     <div class='row marginTop'>
         
         
         <!-- Category selecting DropDown -->
-        <div class="all_lessons_select">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 all_lessons_select">
        
             <div  class="form-group">
                 
@@ -43,19 +43,21 @@
          <!-- END of Category selecting DropDown -->
          
         <!-- All Courses -->
-        <div id='wrapper_for_courses_list'>
+        <div id='col-lg-8 col-md-8 col-sm-12 col-xs-12 wrapper_for_courses_list'>
         
             <% course.forEach(function(course){ %>
-                <div class="all_lessons_select_list">
-                    <div class='row course_list_wrapper'> 
-                        <a href='/all_Courses/<%-course._id%>'> <img class='col-md-4 col-lg-4 col-xs-12 course_description_image' src='/images/<%= course.image %>.jpg'> </a>
-                        <div class='col-md-7 col-lg-7 col-xs-12'>
-                            <h4><%= course.title %></h4>
-                            <p><%= course.description %></p>
+                <div class="paragraphs course_list_wrapper">
+                    <div class="row">
+                        <div class="span4">
+                          <img class='course_description_image' src='/images/<%= course.image %>.jpg' />
+                          <div class="content-heading"><h4><%= course.title %></h4></div>
+                          <p><%= course.description %></p>
                         </div>
                     </div>
-                </div>
-            <% }) %>
+                </div> 
+                   
+             <% }) %>
+            
         </div>
         <!-- END of All Courses -->    
         

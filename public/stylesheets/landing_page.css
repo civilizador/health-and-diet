@@ -79,10 +79,7 @@
   padding: 5px;
   
 }
-.wrapper_for_courses_list {
-  width: 60%;
-}
-
+ 
 
 .no_link_outlook {
   color: gray !important;
@@ -97,19 +94,23 @@
   background-color: white!important;
   height: 150px !important;
   padding: 15px;
-  width: 35%;
+   float: left;
 }
 .all_lessons_select_list {
-  width: 60vw;
-  margin-bottom: 5vh;
+  width: 100%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   }
 img.course_description_image {
-  height: 80%;
-  margin: 20px;
+ 
   border-radius: 5px;
   float: left;
+  width: 35%;
+  margin: 20px;
+   
 }
-.row.course_list_wrapper {
+ 
+.course_list_wrapper {
   height: 250px;
   background-color: white;
   float: right;
