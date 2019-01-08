@@ -79,6 +79,9 @@
   padding: 5px;
   
 }
+.wrapper_for_courses_list {
+  width: 60%;
+}
 
 
 .no_link_outlook {
@@ -91,15 +94,15 @@
 }
 
 .all_lessons_select {
-   background-color: white!important;
+  background-color: white!important;
   height: 150px !important;
   padding: 15px;
-  width: 35vw;
+  width: 35%;
 }
 .all_lessons_select_list {
   width: 60vw;
-  float: right !important;
-}
+  margin-bottom: 5vh;
+  }
 img.course_description_image {
   height: 80%;
   margin: 20px;

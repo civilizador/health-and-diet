@@ -1,4 +1,6 @@
 <% include ../partials/header_login     %>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
     body {
         background: #eeeeee;
@@ -6,7 +8,6 @@
         padding:  0;
     }
 </style>
-<div class='login_page_wrapper'>
 
 
     <div class='row'> 
@@ -24,46 +25,79 @@
     
     <div class='row marginTop'>
         
+        
         <!-- Category selecting DropDown -->
         <div class="all_lessons_select">
        
             <div  class="form-group">
-              <label>Категория Урока</label>
-                    <select id='selector_for_course' class='form-control'>
-                         <% categories.forEach(function(category){ %>
-                         <option><%=category%></option>
-                         <% }) %>
-                    </select>
+                
+                    <label>Категория Урока</label>
+                        <select id='selector_for_course' name='category' class='form-control' value=''>
+                             <% categories.forEach(function(category){ %>
+                             <option><%=category%></option>
+                             <% }) %>
+                        </select>
             </div>
               
         </div>
          <!-- END of Category selecting DropDown -->
-        
+         
         <!-- All Courses -->
+        <div id='wrapper_for_courses_list'>
+        
             <% course.forEach(function(course){ %>
                 <div class="all_lessons_select_list">
                     <div class='row course_list_wrapper'> 
-                        <img class='col-md-4 course_description_image' src='/images/<%= course.image %>.jpg'>
-                        <div class='col-md-7'>
+                        <a href='/all_Courses/<%-course._id%>'> <img class='col-md-4 col-lg-4 col-xs-12 course_description_image' src='/images/<%= course.image %>.jpg'> </a>
+                        <div class='col-md-7 col-lg-7 col-xs-12'>
                             <h4><%= course.title %></h4>
                             <p><%= course.description %></p>
-                        <div>
+                        </div>
                     </div>
                 </div>
-            </div>
             <% }) %>
-        
+        </div>
         <!-- END of All Courses -->    
         
     </div>
+ 
+  <script>
   
-</div>
-<script>
-    $('#selector_for_course').change(
-        function() {
-            alert( $('#selector_for_course').val() ) 
+    $('#selector_for_course').on('change', function() {
+         
+        selectedCat=this.value;
+        alert( selectedCat );
+            axios.get('/selected_courses', {
+                params: {
+                    category: selectedCat
+                    } 
+            }).then(function (response) {
+                    rebuildList(response.data);
+                })  
+    });
+       function rebuildList(response) {
+            document.getElementById('wrapper_for_courses_list').innerHTML=' ';
+            response.forEach(function(courses){
+                alert(courses.title)
+                let node = `<div class='all_lessons_select_list'> 
+                           <div class='row course_list_wrapper'> 
+                            <a href='/all_Courses/${courses._id}'> 
+                            <img class='col-md-4 col-lg-4 col-xs-12 course_description_image' 
+                             src='/images/${courses.image}.jpg'></a> 
+                             <div class='col-md-7 col-lg-7 col-xs-12'> 
+                             <h4> ${courses.title} </h4> 
+                              <p> ${courses.description}  </p> 
+                         </div> 
+                     </div> 
+                 </div> `
+                $('#wrapper_for_courses_list').append(node);
+            })
+            
         }
-    )
-</script>
-
+ 
+    
+ 
+  </script>
+ 
+ 
 <% include ../partials/footer     %>

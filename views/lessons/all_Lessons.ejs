@@ -31,7 +31,7 @@
               <label>Категория Урока</label>
                     <select class='form-control'>
                          <% courses_list.forEach(function(course){ %>
-                         <option><%=course%></option>
+                         <option><%=course.title%></option>
                          <% }) %>
                     </select>
             </div>
@@ -40,10 +40,12 @@
          <!-- END of Category selecting DropDown -->
         
         <!-- All Courses -->
+        <div id='wrapper_for_courses_list'>
+
             <% lessons.forEach(function(lesson){ %>
                 <div class="all_lessons_select_list">
                     <div class='row course_list_wrapper'> 
-                        <img class='col-md-4 course_description_image' src='/images/<%= lesson.image %>.jpg'>
+                        <a href='all_lessons/<%- lesson._id %>'><img class='col-md-4 course_description_image' src='/images/<%= lesson.image %>.jpg'></a>
                         <div class='col-md-7'>
                             <h4><%= lesson.title %></h4>
                             <p><%= lesson.description %></p>
@@ -52,7 +54,8 @@
                 </div>
             </div>
             <% }) %>
-        
+            
+        </div>
         <!-- END of All Courses -->    
         
     </div>
@@ -60,3 +63,47 @@
 </div>
 
 
+<script>
+  
+    $('#all_lessons_select').on('change', function() {
+         
+        var selectedCourse=this.value;
+        alert( selectedCourse );
+            axios.get('/selected_lessons', {
+                params: {
+                    course: selectedCourse
+                    } 
+            }).then(function (response) {
+                    rebuildList(response.data);
+                })  
+    });
+    
+    
+    function rebuildList(response) {
+            document.getElementById('wrapper_for_courses_list').innerHTML=' ';
+            response.forEach(function(courses){
+                alert(courses.title)
+                let node = `<div class='all_lessons_select_list'> 
+                           <div class='row course_list_wrapper'> 
+                            <a href='/all_lessons/${courses._id}'> 
+                            <img class='col-md-4 col-lg-4 col-xs-12 course_description_image' 
+                             src='/images/${courses.image}.jpg'></a> 
+                             <div class='col-md-7 col-lg-7 col-xs-12'> 
+                             <h4> ${courses.title} </h4> 
+                              <p> ${courses.description}  </p> 
+                         </div> 
+                     </div> 
+                 </div> `
+                $('#wrapper_for_courses_list').append(node);
+            })
+            
+    }
+ 
+    
+ 
+  </script>
+  
+  
+  <% include ../partials/footer     %>
+  
+  

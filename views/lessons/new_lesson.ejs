@@ -24,12 +24,18 @@
         
          <div  class="form-group">
             <label>Добавить урок в следующий курс</label>
-                <select class='form-control' name="lesson[related_to_course]">
+                <select id='related_to_course' class='form-control' name="lesson[related_to_course_name]">
                      <% courses_list.forEach(function(course){ %>
-                     <option><%=course%></option>
+                     <option><%=course.title%><span><%=' _ID:' + course.id%></span></option>
                      <% }) %>
                 </select>
         </div>
+        
+        <div class="form-group">
+            <label>ID Курса</label>
+                <input class='form-control'  id='related_to_courseID'   type=text name="lesson[related_to_course_id]" >
+        </div>
+        
         <div class="form-group">
             <label>Название Урока</label>
                 <input class='form-control'  id='title'   type=text name="lesson[title]" >
@@ -68,3 +74,10 @@
 
  
 
+ <script>
+        $('#related_to_course').change(function(){
+            var string = $('#related_to_course').val()
+            var newString = string.split(":").pop();
+             $('#related_to_courseID').val(newString)
+         })
+        </script>

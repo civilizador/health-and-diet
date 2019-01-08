@@ -46,6 +46,7 @@
 
     require('./routes/authRoutes')(app);
     require('./routes/CRUDRoutes')(app);
+    require('./routes/adminRoutes')(app);
     // require('./routes/commentsRoutes')(app);
 
          

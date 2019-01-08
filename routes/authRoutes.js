@@ -4,8 +4,7 @@ const  Course =             require("../models/coursemod");
 const  Lesson =             require("../models/lessonmod")
 const  User =               require("../models/usermod");
 const  middleware  =        require("../middleware.js");
-const  flash    =           require("connect-flash");
-
+ 
 module.exports = (app) => {
             // 1.   show register form page
                 app.get("/register",function(req, res) {
@@ -102,11 +101,7 @@ module.exports = (app) => {
                     });
                 });
                 
-            // 8. Admin Panel Page
-        
-                app.get("/adminpanel",middleware.isAdmin, function(req, res) {
-                    res.render("users/adminpanel")
-                });
+           
                
                 
                 function escapeRegex(text) {

@@ -4,7 +4,7 @@
     const   Lesson =            require("../models/lessonmod");
     const   middleware  =       require("../middleware.js");
     const   flash    =          require("connect-flash");
-    const   categories =            ['Course Category 1','Course Category 2','Course Category 3','Course Category 4','Course Category 5','Course Category 6','Course Category 7','Course Category 8'];
+    const   categories =            ['CourseCategory1','CourseCategory2','CourseCategory3','CourseCategory4','CourseCategory5','CourseCategory6','CourseCategory7','CourseCategory8'];
       
 
         var courses_list=[];
@@ -13,7 +13,8 @@
                         throw err
                     }else{
                         course.forEach(function(course){
-                            courses_list.push(course.title);
+                            courses_list.push({title: course.title,
+                                              id: course._id});;
                                 courses_list = [...(new Set(courses_list))];
                         })
                         
@@ -45,9 +46,10 @@
         app.get("/", middleware.isLoggedIn, function(req, res){ 
                res.render("lessons/landing",{ currentUser:req.user });
              });
+
+//  COURSE ROUTES 
         
-        
-        //2. ALL COURSES ROUTE - You can choose category and list all courses related to the category
+        //1. ALL COURSES ROUTE - You can choose category and list all courses related to the category
         
         app.get("/all_Courses", middleware.isLoggedIn, function(req, res) { 
             if(req.query.search){  
@@ -60,7 +62,7 @@
                         }
                 })
             } else {
-                    Course.find({}, function(err, course){
+                        Course.find({}, function(err, course){
                             if(err) {
                                 throw err;
                             } else { 
@@ -71,7 +73,7 @@
         });  
         
         
-        //3.  CREATE NEW COURSE FORM
+        //2.  CREATE NEW COURSE FORM
         
             app.get("/new_course",middleware.isAdmin,function(req,res){
             //  create a new ticket.
@@ -79,8 +81,7 @@
             });
         
         
-
-        //4. "CREATE COURSE" ROUTE LOGIC POST REQUEST
+        //3. "CREATE COURSE" ROUTE LOGIC POST REQUEST
         
         app.post("/create_course",middleware.isAdmin,function(req,res){
             //  create a new ticket.
@@ -97,16 +98,40 @@
             );
         });
         
+        // 4. REFRESH COURSE LIST BY SELECTED CATEGORY
+        
+            app.get("/selected_courses", middleware.isLoggedIn, function(req,res) {
+                 Course.find({ category: req.query.category}, async function(err, course){
+                            if(err) {
+                                console.log(err);
+                            } else { 
+                                 console.log(course)
+                                 res.send(course)
+                            }
+                        });
+            });
 
+        // 5. "SHOW" ROUTE COURSE.
+        
+            app.get("/all_courses/:id", async function (req, res) {
+                let foundCourse = await Course.findById(req.params.id).populate("comments").exec()
+                res.render("lessons/show_course", {
+                    course: foundCourse,
+                    user: req.user,
+                    currentUser: req.user,
+                })
+            });
 
-        //5.  CREATE NEW LESSON FORM
+// LESSON ROUTES
+
+        //1.  CREATE NEW LESSON FORM
         
             app.get("/new_lesson",middleware.isAdmin,function(req,res){
             //  create a new ticket.
                  res.render("lessons/new_lesson", {courses_list:courses_list});
             });
             
-        //6. "CREATE LESSON" ROUTE LOGIC POST REQUEST     
+        //2. "CREATE LESSON" ROUTE LOGIC POST REQUEST     
         
             app.post("/create_lesson", middleware.isAdmin, function(req,res){
             //  create a new ticket.
@@ -123,7 +148,7 @@
             );
         });
         
-        //7. ALL LESSONS ROUTE - You can choose course and list all lessons related to the course
+        //3. ALL LESSONS ROUTE - You can choose course and list all lessons related to the course
         
         app.get("/all_Lessons", middleware.isLoggedIn, function(req, res) { 
             if(req.query.search){  
@@ -145,59 +170,40 @@
                         });
                     } 
         });         
+        
+        // 4. LESSON SHOW PAGE
+            app.get("/all_lessons/:id", async function (req, res) {
+                let foundLesson = await Lesson.findById(req.params.id).populate("comments").exec()
+                res.render("lessons/show_lesson", {
+                    lesson: foundLesson,
+                    user: req.user,
+                    currentUser: req.user,
+                })
+        });
+        
+        // 5. REFRESH LESSON LIST BY SELECTED CATEGORY
+        
+            app.get("/selected_lessons", middleware.isLoggedIn, function(req,res) {
+                 Lesson.find({ related_to_course_name: req.query.course}, async function(err, lesson){
+                            if(err) {
+                                console.log(err);
+                            } else { 
+                                 console.log(lesson)
+                                 res.send(lesson)
+                            }
+                        });
+            });
+        
+//  PARTS OF LESSON  ROUTES
 
-        //8.  CREATE NEW LESSON PART FORM
+        //1.  CREATE NEW LESSON PART FORM
         
             app.get("/new_parts",  middleware.isLoggedIn, function(req,res){
             //  create a new ticket.
                 res.render("lessons/new_parts", {courses_list:courses_list,lesson_list:lesson_list});
             });
             
- 
-
-
-
-        //4. "SHOW" ROUTE.
-        app.get("/all_courses/:id", async function (req, res) {
-            let foundCourse = await Course.findById(req.params.id).populate("comments").exec()
-            res.render("show", {
-                course: foundCourse,
-                user: req.user,
-                currentUser: req.user,
-            })
-        });
-      
-        //5.  "EDIT" a particular course
-        app.get("/all_courses/:id/edit", middleware.isLoggedIn, function(req, res) {
-            Course.findById(req.params.id,function(err, foundCourse) {
-                if(err) {
-                    throw err
-                    } else {
-                    }
-                }
-            ); 
-        } );
-         
-        //6. "UPDATE" ROUTE  
-        app.put("/all_courses/:id",function(req,res){  
-            Course.findByIdAndUpdate(req.params.id,req.body.ticket,function(err, updatedticket){
-                if(err){
-                    throw err
-                    } else {
-                    res.redirect("/tickets/" + req.params.id);
-                }
-            });
-        });
-        
-        //7. "DELETE" ROUTE
-        app.delete("/all_courses/:id", function(req, res){
-             //destroy blog post
-            Course.findByIdAndRemove(req.params.id, function(err)
-            {    if(err) {throw err}
-              //redirect to index route.
-            else {res.redirect("/");}
-            });
-        });
+       
         
     }
 
