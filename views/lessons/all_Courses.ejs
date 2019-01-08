@@ -49,9 +49,14 @@
                 <div class="paragraphs course_list_wrapper">
                     <div class="row">
                         <div class="span4">
-                          <img class='course_description_image' src='/images/<%= course.image %>.jpg' />
+                          <a href='all_courses/<%= course._id %>'><img class='course_description_image' src='/images/<%= course.image %>.jpg' /> </a>
                           <div class="content-heading"><h4><%= course.title %></h4></div>
                           <p><%= course.description %></p>
+                            <div><button><img />Стоимость</button>
+                                <button><img /> Содержание</button>
+                                    <button><img /> Сертификат</button>
+                                        <button><img /> Купить курс</button>
+                            </div>
                         </div>
                     </div>
                 </div> 

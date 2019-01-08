@@ -114,12 +114,20 @@
         // 5. "SHOW" ROUTE COURSE.
         
             app.get("/all_courses/:id", async function (req, res) {
-                let foundCourse = await Course.findById(req.params.id).populate("comments").exec()
-                res.render("lessons/show_course", {
-                    course: foundCourse,
-                    user: req.user,
-                    currentUser: req.user,
-                })
+                let foundCourse = await Course.findById(req.params.id);
+                Lesson.find({ related_to_course_name: foundCourse.title}, async function(err, lessons){
+                            if(err) {
+                                console.log(err);
+                            } else { 
+                                 console.log(lessons)
+                                 res.render("lessons/show_course", {
+                                    lessons: lessons,
+                                    user: req.user,
+                                    currentUser: req.user,
+                                })
+                            }
+                });
+                 
             });
 
 // LESSON ROUTES
@@ -148,28 +156,6 @@
             );
         });
         
-        //3. ALL LESSONS ROUTE - You can choose course and list all lessons related to the course
-        
-        app.get("/all_Lessons", middleware.isLoggedIn, function(req, res) { 
-            if(req.query.search){  
-                const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-                Lesson.find({title: regex}, function(err, lessons){
-                    if(err) {
-                            throw err;   
-                        } else { 
-                            res.render("lessons/all_Lessons",{lessons:lessons,currentUser:req.user,categories:categories,courses_list:courses_list });
-                        }
-                })
-            } else {
-                    Lesson.find({}, function(err, lessons){
-                            if(err) {
-                                throw err;
-                            } else { 
-                                res.render("lessons/all_Lessons", {lessons:lessons,currentUser:req.user,categories:categories,courses_list:courses_list } ); 
-                            }
-                        });
-                    } 
-        });         
         
         // 4. LESSON SHOW PAGE
             app.get("/all_lessons/:id", async function (req, res) {
@@ -181,18 +167,6 @@
                 })
         });
         
-        // 5. REFRESH LESSON LIST BY SELECTED CATEGORY
-        
-            app.get("/selected_lessons", middleware.isLoggedIn, function(req,res) {
-                 Lesson.find({ related_to_course_name: req.query.course}, async function(err, lesson){
-                            if(err) {
-                                console.log(err);
-                            } else { 
-                                 console.log(lesson)
-                                 res.send(lesson)
-                            }
-                        });
-            });
         
 //  PARTS OF LESSON  ROUTES
 
