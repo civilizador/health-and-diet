@@ -81,22 +81,23 @@
             document.getElementById('wrapper_for_courses_list').innerHTML=' ';
             response.forEach(function(courses){
                 alert(courses.title)
-                let node = `<div class='all_lessons_select_list'> 
-                           <div class='row course_list_wrapper'> 
-                            <a href='/all_Courses/${courses._id}'> 
-                            <img class='col-md-4 col-lg-4 col-xs-12 course_description_image' 
-                             src='/images/${courses.image}.jpg'></a> 
-                             <div class='col-md-7 col-lg-7 col-xs-12'> 
-                             <h4> ${courses.title} </h4> 
-                              <p> ${courses.description}  </p> 
-                         </div> 
-                     </div> 
-                 </div> `
+                let node =  ` <div class='paragraphs course_list_wrapper'>
+                                <div class='row'>
+                                    <div class='span4'>
+                                            <img class='course_description_image' src='/images/${course.image}.jpg' />
+                                            <div class='content-heading'>
+                                            <h4>${course.title}</h4>
+                                            </div>
+                                            <p>${course.description}</p>
+                                    </div>
+                                </div>
+                            </div> `
                 $('#wrapper_for_courses_list').append(node);
             })
             
         }
- 
+
+                   
     
  
   </script>
