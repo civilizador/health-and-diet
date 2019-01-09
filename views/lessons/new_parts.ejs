@@ -69,8 +69,8 @@
   <script>
         
         
-        $('#course_selector_part_add').change(
-            let selected_course_title_id = $('#course_selector_part_add').val()
+        $('#course_selector_part_add').on('change', function() {
+            let selected_course_title_id = $('#course_selector_part_add').val();
             var id_of_selected_course =selected_course_title_id.split(":").pop();
                 alert( id_of_selected_course );
                 axios.get('/get_lesson', {
@@ -78,9 +78,9 @@
                         id: id_of_selected_course
                         } 
                 }).then(function (response) {
-                        alert(response.data);
+                        alert(response.data[0].title);
                     }) 
-        )
+        })
         
         
         
