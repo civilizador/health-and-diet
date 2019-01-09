@@ -1,6 +1,68 @@
-<% include ../partials/header_login     %> 
- <%=lessons%>
+ 
 
 
+<% include ../partials/header_login     %>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+    body {
+        background: #eeeeee;
+        margin: 0;
+        padding:  0;
+    }
+</style>
+
+
+    <div class='row'> 
+        <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
+             <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
+                    <div class="float-left">
+                          <img width='50px' src='/images/logo.png' class='float-left '> 
+                          <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
+                    </div>
+                    <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
+        </div> 
+    </div>
+    
+    <div class='row marginTop'>
+        
+        
+        <!-- Category selecting DropDown -->
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 all_lessons_select">
+       
+            <div  class="form-group">
+                
+                    <label>Категория Урока</label>
+                        <select id='selector_for_course' name='category' class='form-control' value=''>
+                             <% lessons.forEach(function(lesson){ %>
+                             <option>Урок №<%=lesson.number%></option>
+                             <% }) %>
+                        </select>
+            </div>
+              
+        </div>
+         <!-- END of Category selecting DropDown -->
+         
+        <!-- All Courses -->
+        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list'>
+        
+            
+            
+        </div>
+        <!-- END of All Courses -->    
+        
+    </div>
+ 
+  <script>
+   
+                   
+    
+ 
+  </script>
+ 
+ 
 <% include ../partials/footer     %>
+
+ 

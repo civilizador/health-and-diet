@@ -119,7 +119,7 @@
                             if(err) {
                                 console.log(err);
                             } else { 
-                                 console.log(lessons)
+                                 
                                  res.render("lessons/show_course", {
                                     lessons: lessons,
                                     user: req.user,
@@ -158,7 +158,7 @@
         
         
         // 4. LESSON SHOW PAGE
-            app.get("/all_lessons/:id", async function (req, res) {
+        app.get("/all_lessons/:id", async function (req, res) {
                 let foundLesson = await Lesson.findById(req.params.id).populate("comments").exec()
                 res.render("lessons/show_lesson", {
                     lesson: foundLesson,
@@ -177,7 +177,16 @@
                 res.render("lessons/new_parts", {courses_list:courses_list,lesson_list:lesson_list});
             });
             
-       
+            app.get("/get_lesson", async function (req, res) {
+                let foundCoursebyId = await Course.findById(req.query.id)
+                Lesson.find({ related_to_course_name: foundCoursebyId.title}, async function(err, lessons){
+                            if(err) {
+                                console.log(err);
+                            } else { 
+                                 res.send(lessons)
+                            }
+                });
+        });
         
     }
 
