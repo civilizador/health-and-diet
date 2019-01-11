@@ -1,30 +1,13 @@
 <% include ../partials/header_login     %>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<style>
-    body {
-        background: #eeeeee;
-        margin: 0;
-        padding:  0;
-    }
-</style>
-
-
     <div class='row'> 
         <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
              <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
-                    <div class="float-left">
-                          <img width='50px' src='/images/logo.png' class='float-left '> 
-                          <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
-                    </div>
-                    <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
-        </div> 
+         <% include ../partials/landing/header    %>  
     </div>
     
     <div class='row marginTop'>
-        
         
         <!-- Category selecting DropDown -->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 all_lessons_select">

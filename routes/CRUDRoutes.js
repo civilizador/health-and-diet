@@ -237,13 +237,14 @@
         
             // 3. SHOW PAGE FOR SINGLE PART
             
-            app.get('/parts/:id', middleware.isLoggedIn, function(req,res){
+            app.get('/parts/:id', middleware.isLoggedIn, async function(req,res){
                 console.log(req.params.id)
+                let all_parts = await Parts.find({});
                 Parts.find({_id:req.params.id} ,function(err, part) {
                     if(err){
                         req.flash("error", "DB Error please try again")
                     }else{
-                        res.render('lessons/part_show',{part, user:req.user})
+                        res.render('lessons/part_show',{part,currentUser:req.user, all_parts})
                     }
                     
                 })

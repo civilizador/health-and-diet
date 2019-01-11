@@ -1,21 +1,49 @@
 
 <% include ../partials/header_login     %>
-
-    <div class="btn btn-info btn-lg btn-block" >
-        <h2 id='part_name_header'> <%= part[0].title %> </h2>
-    </div>     
-    <br>
-    <hr>
-         <video width="100%" height="auto" controls>
-                <source src="<%- part[0].url %>" type="video/mp4">
-                 
-                 Your browser does not support the video tag.
-             </video>
-             <%= part.url %> 
-     <br>
-    <hr>
-    <div style='padding:15px;'>
-        <h2 id='part_name_header'> <%= part[0].title %> </h2>      
-        <h5 id='part_name_header'> <%= part[0].description %> </h5>
-    </div>
+<div class='row'> 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+             <h2 class='header_on_login whiteBackground'> Просмотр Урока </h2>  
+        </div>
+       <% include ../partials/landing/header    %> 
+</div>
+    
+    
+<div class='row marginTop'>
+    
+    
+     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 all_lessons_select">
+       
+            <div  class="form-group">
+                
+                    <label>Категория Урока</label>
+                        <select id='selector_for_course' name='category' class='form-control' value=''>
+                             <% all_parts.forEach(function(parts){ %>
+                             <option><%=parts.title%></option>
+                             <% }) %>
+                        </select>
+            </div>
               
+    </div>
+        
+    <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list'>
+ 
+        <div class="btn btn-info btn-lg btn-block" >
+            <h2 id='part_name_header'> <%= part[0].title %> </h2>
+        </div>     
+        <br>
+        <hr>
+        <video width="100%" height="auto" controls>
+            <source src="<%- part[0].url %>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <hr>
+        <div style='padding:15px;'>
+            <h2 id='part_name_header'> <%= part[0].title %> </h2>      
+            <h5 id='part_name_header'> <%= part[0].description %> </h5>
+        </div>
+              
+    </div>
+    
+    
+</div>
