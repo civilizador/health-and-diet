@@ -50,10 +50,8 @@
          <!-- END of Category selecting DropDown -->
          
         <!-- All Courses -->
-        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list'>
-        
-            
-            
+        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list' >
+      
         </div>
         <!-- END of All Courses -->    
         
@@ -64,30 +62,29 @@
     $('#selector_for_lesson').on('change', function() {
          
         let selectedLesson = this.options[this.selectedIndex].getAttribute('lesson_id');
-        alert(selectedLesson );
+        // alert(selectedLesson );
             axios.get('/selected_lesson_parts', {
                 params: {
                     lesson_id: selectedLesson
                     } 
             }).then(function  (response) {
-                    
                     rebuildList(response.data);
                 })  
     });
       function rebuildList(response) {
             document.getElementById('wrapper_for_courses_list').innerHTML=' ';
             response.forEach(function(part){
-                alert(part.title)
-                let node =  `<div class='row'>   
-                                <div class='card' style='width: 18rem;'>
+                // alert(part.title)
+                let node =  ` 
+                                <div class='card' style='width: 18rem; padding:10px; margin:10px; border-radius: 15px;'>
                                      <a href='/parts/${part._id}'> <img class='card-img-top' src='https://s3-eu-west-1.amazonaws.com/andop.online/images/${part.image}.jpg' alt="Card image cap"> </a>
                                       <div class='card-body">
                                             <h5 class='card-title'>${part.title}</h5>
-                                            <p class='card-text'>${part.description}</p>
+                                            <p class='card-text'>${part.description.slice(0,120)+' ... '}</p>
                                             <a href='#' class='btn btn-primary'>Go somewhere</a>
                                       </div>
                                 </div>
-                            </div>`
+                            `
                 $('#wrapper_for_courses_list').append(node);
             })
             
