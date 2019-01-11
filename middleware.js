@@ -51,11 +51,14 @@ var middlewareObj={};
     };
             
 middlewareObj.isLoggedIn = function(req, res, next){
-    if(req.isAuthenticated()){
+    
+      if (req.isAuthenticated()){
         return next();
     }
+    else {
     req.flash("error", "Пожалуйста войдите в систему или зарегистрируйтесь.");
     res.redirect("/login");
+    }
 };
 
                 

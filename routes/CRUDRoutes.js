@@ -2,11 +2,36 @@
     const   Course =            require("../models/coursemod");
     const   User =              require("../models/usermod");
     const   Lesson =            require("../models/lessonmod");
+    const   Parts =             require("../models/lesson_part");
     const   middleware  =       require("../middleware.js");
     const   flash    =          require("connect-flash");
-    const   categories =            ['CourseCategory1','CourseCategory2','CourseCategory3','CourseCategory4','CourseCategory5','CourseCategory6','CourseCategory7','CourseCategory8'];
-      
+    const   categories =        ['CourseCategory1','CourseCategory2','CourseCategory3','CourseCategory4','CourseCategory5','CourseCategory6','CourseCategory7','CourseCategory8'];
+    const   aws =               require('aws-sdk');
+    const   multer =            require('multer');
+    const   multerS3 =          require('multer-s3');  
 
+    // // AWS CONFIGURATION
+    // aws.config.update({
+    // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    // region: 'eu-west-1'
+    // });
+    // const s3 = new aws.S3();
+    
+    // // MULTER CONFIGURATION
+    // var upload = multer({
+    //     storage: multerS3({
+    //         s3: s3,
+    //         acl: 'public-read',
+    //         bucket: 'andop.online',
+    //         key: function (req, file, cb) {
+    //             console.log(file);
+    //             cb(null, file.originalname); //use Date.now() for unique file keys
+    //         }
+    //     })
+    // });
+    
+    
         var courses_list=[];
             Course.find({}, function(err, course){ 
                     if(err){
@@ -87,11 +112,13 @@
             //  create a new ticket.
             Course.create(req.body.course, function(err,course){
                 if(err){
-                    throw err,
+                    req.flash("error", "Произошла ошибка. Курс не был создан. Пожалуйста попробуйте снова.");
+                    res.redirect( "/create_course");
                     console.log("Something is wrong") ;
                 }
             //redirect back
                 else {
+                    req.flash("success", "Курс успешно создан. Вернитесь в админ панель чтобы добавить уроки.");
                     res.redirect( "/all_Courses");
                 }
             }
@@ -103,6 +130,7 @@
             app.get("/selected_courses", middleware.isLoggedIn, function(req,res) {
                  Course.find({ category: req.query.category}, async function(err, course){
                             if(err) {
+                            req.flash("error", "Произошла ошибка.Пожалуйста попробуйте снова.");
                                 console.log(err);
                             } else { 
                                  console.log(course)
@@ -113,7 +141,7 @@
 
         // 5. "SHOW" ROUTE COURSE.
         
-            app.get("/all_courses/:id", async function (req, res) {
+            app.get("/all_courses/:id", middleware.isLoggedIn,  async function (req, res) {
                 let foundCourse = await Course.findById(req.params.id);
                 Lesson.find({ related_to_course_name: foundCourse.title}, async function(err, lessons){
                             if(err) {
@@ -143,29 +171,40 @@
         
             app.post("/create_lesson", middleware.isAdmin, function(req,res){
             //  create a new ticket.
-            Lesson.create(req.body.lesson, function(err,lesson){
-                if(err){
-                    res.redirect("new_lesson");
-                    throw err , console.log("Something is wrong") 
-                }
-            //redirect back
-                else {
-                    res.redirect("all_Lessons");
-                }
-            }
-            );
-        });
+                Lesson.create(req.body.lesson, function(err,lesson){
+                    if(err){
+                        res.redirect("new_lesson");
+                        throw err , console.log("Something is wrong") 
+                    }
+                //redirect back
+                    else {
+                        res.redirect("all_Lessons");
+                    }
+                });
+            });
         
         
-        // 4. LESSON SHOW PAGE
-        app.get("/all_lessons/:id", async function (req, res) {
-                let foundLesson = await Lesson.findById(req.params.id).populate("comments").exec()
-                res.render("lessons/show_lesson", {
-                    lesson: foundLesson,
-                    user: req.user,
-                    currentUser: req.user,
-                })
-        });
+        // 3. LESSON SHOW PAGE
+            app.get("/all_lessons/:id", async function (req, res) {
+                    let foundLesson = await Lesson.findById(req.params.id).populate("comments").exec()
+                    res.render("lessons/show_lesson", {
+                        lesson: foundLesson,
+                        user: req.user,
+                        currentUser: req.user,
+                    })
+            });
+        
+        // 4. RETRIEVE LESSONS BY COURSE NAME SELECTION
+            app.get("/get_lesson", middleware.isLoggedIn, async function (req, res) {
+                let foundCoursebyId = await Course.findById(req.query.id)
+                Lesson.find({ related_to_course_name: foundCoursebyId.title}, async function(err, lessons){
+                            if(err) {
+                                console.log(err);
+                            } else { 
+                                 res.send(lessons)
+                            }
+                });
+            });
         
         
 //  PARTS OF LESSON  ROUTES
@@ -177,16 +216,49 @@
                 res.render("lessons/new_parts", {courses_list:courses_list,lesson_list:lesson_list});
             });
             
-            app.get("/get_lesson", async function (req, res) {
-                let foundCoursebyId = await Course.findById(req.query.id)
-                Lesson.find({ related_to_course_name: foundCoursebyId.title}, async function(err, lessons){
-                            if(err) {
-                                console.log(err);
-                            } else { 
-                                 res.send(lessons)
-                            }
-                });
-        });
+            //2. "CREATE LESSON PART" ROUTE LOGIC POST REQUEST     
+        
+            app.post("/create_part", middleware.isAdmin, function(req,res){
+            //  create a new ticket.
+                Parts.create(req.body.part, function(err,lesson){
+                    if(err){
+                        req.flash("error", "Произошла ошибка. Курс не был создан. Пожалуйста попробуйте снова.");
+                        res.redirect("new_parts");
+                        console.log("Something is wrong") 
+                    }
+                //redirect back
+                    else {
+                        req.flash("success", "Часть успешно добавлена в урок.");
+                        res.redirect("/new_parts");
+                    }
+                }
+                );
+            });
+        
+            // 3. SHOW PAGE FOR SINGLE PART
+            
+            app.get('/parts/:id', middleware.isLoggedIn, function(req,res){
+                console.log(req.params.id)
+                Parts.find({_id:req.params.id} ,function(err, part) {
+                    if(err){
+                        req.flash("error", "DB Error please try again")
+                    }else{
+                        res.render('lessons/part_show',{part, user:req.user})
+                    }
+                    
+                })
+            })
+            
+            // 4. RETRIEVE LESSON PARTS BY LESSON ID
+        
+            app.get("/selected_lesson_parts", middleware.isLoggedIn, async function(req,res) {
+                console.log(req.query.lesson_id)
+                let parts = await Parts.find({ related_to_lesson: req.query.lesson_id}); 
+                 console.log(parts);
+                    res.send(parts)
+                            
+                     
+            });
         
     }
 

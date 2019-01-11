@@ -13,52 +13,89 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <link rel="stylesheet" href="/stylesheets/create_course.css">
+<style>
+#add_part_name {
+ margin: 5px;   
+}
+</style>
 <br>
 <center><h1> Добавить Часть в Урок</h1>
 </center>
+
 <div class='container'>
   
-    <form action="/create_lesson" method="POST">
+    <form action="/create_part" method="POST">
   
         <div class="form-group">
             <label>Добавлен</label>
-                <input   class='form-control' required type=date name="lesson[created]" >
+                <input   class='form-control' required type=date name="part[created]" >
         </div>
         
+        <div class="form-group">
+            <label>Введите имя файла на сервере</label>
+                <input id='add_part_name_input' class='form-control'  placeholder='введите имя фотографии на сервере. Например часть3'  type=text  >
+                <button id='add_part_name' class='btn btn-info pull-right'>Добавить</button>
+        </div>
+        
+        <div class="form-group">
+            <label>Полный пусть к файлу</label>
+                <input class='form-control' id='url_of_video'  type=text name="part[url]" placeholder='введите имя фотографии на сервере. Например часть3' >
+        </div>
+        
+        <div class="form-group">
+            <label>Название/номер части</label>
+                <input   class='form-control' required type=text name="part[title]" placeholder='Например: Часть 1' >
+        </div>
+        
+        <!--<div class="form-group">-->
+        <!--    <label>Фото</label>-->
+        <!--        <input  class='form-control'  type=file  name="part[image]" >-->
+        <!--</div>-->
+        
+        <div class="form-group">
+            <label>Фото</label>
+                <input  class='form-control' placeholder='Введите название фото на сервере. Например diet1' type=text  name="part[image]" >
+        </div>
+         
+         
         <div  class="form-group">
-            <label>Добавить урок в следующий курс</label>
-                <select id='course_selector_part_add' class='form-control' name="part[related_to_course]">
+            <label>Добавить часть в следующий курс </label>
+                
+                <select id='course_selector_part_add' class='form-control'>
+                     <option>Выберите Курс</option>
                      <% courses_list.forEach(function(course){ %>
                      <option><%=course.title%><span><%=' _ID:' + course.id%></span></option>
                      <% }) %>
                 </select>
         </div>
-         <div  class="form-group">
+        
+        <div  class="form-group">
             <label>Добавить часть в следующий урок</label>
-                <select id='lesson_selector_part_add' class='form-control' name="part[related_to_lesson]">
+                <select id='lesson_selector_part_add' class='form-control'  >
+                    <option>Выберите Урок</option>
                      <% lesson_list.forEach(function(lesson){ %>
                      <option><%=lesson.title%><span><%=' _ID:' + lesson.id%></span></option>
                      <% }) %>
                 </select>
         </div>
         
-        
         <div class="form-group">
-            <label>Номер Урока</label>
-                <input class='form-control'  id='lesson_id'   type=text name="part[lesson_id]" >
-        </div>
-        <div class="form-group">
-            <label>Ссылка на урок</label>
-                <input class='form-control'  placeholder='введите имя фотографии на сервере. Например fitnes'  type=text name="lesson[url]" >
+            <label>Выбранный Курс</label>
+                <input  class='form-control'  id='course_id'   type=text  name="part[related_to_course]" >
         </div>
         
         <div class="form-group">
-            <label>Продолжительность Урока</label>
+            <label>Выбранный Урок</label>
+                <input  class='form-control'  id='lesson_id'   type=text name="part[related_to_lesson]" >
+        </div>
+        
+        <div class="form-group">
+            <label>Продолжительность</label>
                 <input class='form-control'  required   type=text  name="part[lenght]"> 
         </div>
 
         <div class="form-group">
-            <label>Описание Урока</label>
+            <label>Описание</label>
                 <textarea rows="4" cols="10" class='form-control'   name="part[description]"> </textarea>
         </div>
         
@@ -71,25 +108,36 @@
         
         $('#course_selector_part_add').on('change', function() {
             let selected_course_title_id = $('#course_selector_part_add').val();
-            var id_of_selected_course =selected_course_title_id.split(":").pop();
-                alert( id_of_selected_course );
+            var id_of_selected_course = selected_course_title_id.split(":").pop();
                 axios.get('/get_lesson', {
                     params: {
                         id: id_of_selected_course
                         } 
                 }).then(function (response) {
-                        alert(response.data[0].title);
+                        $('#course_id').val(id_of_selected_course);
+                        rebuildDropDown(response.data);
                     }) 
         })
         
+        function rebuildDropDown(related_lessons) {
+            $('#lesson_selector_part_add').empty();
+            $('#lesson_selector_part_add').append(`<option>Выберите урок</option>`)
+            related_lessons.forEach(function(lesson){
+                $('#lesson_selector_part_add').append(`<option>${lesson.title}<span>  _ID:${lesson._id}</span></option>`)
+            })
+          }
         
-        
-        // $('#course_selector_part_add').change(function(){
-        //     var string = $('#related_to_lesson').val()
-        //     var newString = string.split(":").pop();
-        //      $('#lesson_id').val(newString)
-        //  })
+         $('#lesson_selector_part_add').on('change', function() {
+            let string = $('#lesson_selector_part_add').val()
+            let newString = string.split(":").pop();
+             $('#lesson_id').val(newString)
+         })
          
+         
+         $('#add_part_name').on('click',function(){
+             let url = $('#add_part_name_input').val()
+             $('#url_of_video').val(`https://s3-eu-west-1.amazonaws.com/andop.online/${url}.mp4`);
+         })
         </script>
 
 

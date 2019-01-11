@@ -63,9 +63,7 @@
   font-size: 3rem;
 }
 
-.profilePhoto {
-  margin-right:15px; 
-}
+ 
 
 .marginTop {
   margin-left: 40px; ;
@@ -119,3 +117,11 @@ img.course_description_image {
   margin-bottom: 10vh;
   display: table-column;
  }
+.profile_icon_right {
+  width: 60px;
+  height: 90%;
+  margin-right:15px;
+  margin-top: 2px;
+  border: 1px solid silver;
+  border-radius: 50%;
+}

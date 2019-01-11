@@ -2,7 +2,11 @@
 
 
 <% include ../partials/header_login     %>
-
+<style>
+    div.card {
+        float:left !important;
+    }
+</style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
     body {
@@ -35,9 +39,9 @@
             <div  class="form-group">
                 
                     <label>Категория Урока</label>
-                        <select id='selector_for_course' name='category' class='form-control' value=''>
+                        <select id='selector_for_lesson' name='category' class='form-control' value=''>
                              <% lessons.forEach(function(lesson){ %>
-                             <option>Урок №<%=lesson.number%></option>
+                             <option lesson_id='<%- lesson._id %>' > Урок №<%=lesson.number%></option>
                              <% }) %>
                         </select>
             </div>
@@ -57,7 +61,37 @@
  
   <script>
    
-                   
+    $('#selector_for_lesson').on('change', function() {
+         
+        let selectedLesson = this.options[this.selectedIndex].getAttribute('lesson_id');
+        alert(selectedLesson );
+            axios.get('/selected_lesson_parts', {
+                params: {
+                    lesson_id: selectedLesson
+                    } 
+            }).then(function  (response) {
+                    
+                    rebuildList(response.data);
+                })  
+    });
+      function rebuildList(response) {
+            document.getElementById('wrapper_for_courses_list').innerHTML=' ';
+            response.forEach(function(part){
+                alert(part.title)
+                let node =  `<div class='row'>   
+                                <div class='card' style='width: 18rem;'>
+                                     <a href='/parts/${part._id}'> <img class='card-img-top' src='https://s3-eu-west-1.amazonaws.com/andop.online/images/${part.image}.jpg' alt="Card image cap"> </a>
+                                      <div class='card-body">
+                                            <h5 class='card-title'>${part.title}</h5>
+                                            <p class='card-text'>${part.description}</p>
+                                            <a href='#' class='btn btn-primary'>Go somewhere</a>
+                                      </div>
+                                </div>
+                            </div>`
+                $('#wrapper_for_courses_list').append(node);
+            })
+            
+        }
     
  
   </script>

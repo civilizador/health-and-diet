@@ -9,7 +9,7 @@
     const   Lesson =            require("./models/lessonmod");
     const   User =              require("./models/usermod");
     const   middleware  =       require("./middleware.js");
- 
+
     
     //APP CONFIG
     
@@ -35,19 +35,21 @@
         res.locals.error = req.flash("error");
         res.locals.success = req.flash("success");
         next(); 
-    }); 
+    });
+    
     //  PASSPORT.js CONFIGURATION IMPORT
     require("./services/passportConfig")
     app.use(passport.initialize());
     app.use(passport.session());
  
+    
+    
     //RESTFULL ROUTES
-
 
     require('./routes/authRoutes')(app);
     require('./routes/CRUDRoutes')(app);
     require('./routes/adminRoutes')(app);
-    // require('./routes/commentsRoutes')(app);
+    require('./routes/commentsRoutes')(app);
 
          
     app.listen(process.env.PORT,process.env.IP,function(){console.log("Server had been started")});
