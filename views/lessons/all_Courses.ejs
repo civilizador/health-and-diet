@@ -56,7 +56,7 @@
     $('#selector_for_course').on('change', function() {
          
         selectedCat=this.value;
-        alert( selectedCat );
+        // alert( selectedCat );
             axios.get('/selected_courses', {
                 params: {
                     category: selectedCat
@@ -68,11 +68,11 @@
        function rebuildList(response) {
             document.getElementById('wrapper_for_courses_list').innerHTML=' ';
             response.forEach(function(courses){
-                alert(courses.title)
+                // alert(courses.title)
                 let node =  ` <div class='paragraphs course_list_wrapper'>
                                 <div class='row'>
                                     <div class='span4'>
-                                            <img class='course_description_image' src='/images/${courses.image}.jpg' />
+                                             <a href='all_courses/${courses._id}'> <img class='course_description_image' src='/images/${courses.image}.jpg' /> </a>
                                             <div class='content-heading'>
                                             <h4>${courses.title}</h4>
                                             </div>
