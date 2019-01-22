@@ -1,6 +1,6 @@
 /* login page */
 #login_container {
-    margin-top: 20vh !important;
+    margin-top: 5vh !important;
 }
 #submitRegister {
     display:  none;
@@ -10,11 +10,18 @@
 }
 .header_on_login {
     border-bottom: 2px solid silver;
-    text-align: center;
+    text-align: left;
     width: 100% !important;
+    padding:10px;
+     color:navy;
 }
-.login_page_wrapper {
-    height: 100vh;
+div.login_page_wrapper {
+    margin-top: 20vh;
+    height: auto;
+    background-color: white !important;
+    width: 80%;
+    margin-left: 10%;
+    padding-bottom: 10vh;
 }
 .footer {
     position: relative;
@@ -25,10 +32,27 @@
     
 }
 .blueHeading {
-    color: #0000A0;
-    margin-bottom: 20vh;
-}
+    color: rgb(73, 86, 120);
+ }
 .marginCenter {
     margin-left:38%;
     width: auto;
+    padding: 15px;
+}
+.font_navy {
+    color:navy;
+}
+.admin_panel_button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+hr.under_header {
+    border: 3px solid #f2f2f2;
+    width: 100%
+}
+div.footer_login {
+    background-color: white;
+    margin-top: 20vh;
+    height: 5vh;
 }

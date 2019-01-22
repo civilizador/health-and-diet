@@ -1,6 +1,49 @@
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-<button> <a href='new_parts'> Add Parts to lesson </a></button>
-<button> <a href='new_lesson'> Add Lesson </a></button>
-<button> <a href='new_course'> Add Category </a></button>
-<button> <a href='index'> Go to index </a></button>
-<button> <a href='all_Courses'> All courses </a></button>
+
+<div class="header">
+  <a href="#" id="menu-action">
+    <i class="fa fa-bars"></i>
+    <span>Close</span>
+  </a>
+  <div class="logo">
+    ANDOP.AZ - Admin Panel
+  </div>
+</div>
+<div class="sidebar">
+  <ul>
+    <li><a id='create_part' href="#"><i class="fa fa-desktop"></i><span>Добавить часть</span></a></li>
+        <li><a id='edit_part' href="#"><i class="fa fa-table"></i><span>Изменить часть</span></a></li>
+    <li><a id='create_lesson' href="#"><i class="fa fa-server"></i><span>Добавить урок</span></a></li>
+        <li><a id='edit_lesson' href="#"><i class="fa fa-envelope-o"></i><span>Изменить урок</span></a></li>
+    <li><a id='create_course' href="#"><i class="fa fa-calendar"></i><span>Добавить курс</span></a></li>
+        <li><a id='edit_course' href="#"><i class="fa fa-table"></i><span>Изменить курс</span></a></li>
+</div>
+
+<div class="main">
+  <div class="hipsum">
+      <button> <a href='new_parts'> Add Parts to lesson </a></button>
+        <button> <a href='new_lesson'> Add Lesson </a></button>
+        <button> <a href='new_course'> Add Category </a></button>
+        <button> <a href='index'> Go to index </a></button>
+        <button> <a href='all_Courses'> All courses </a></button>
+        <button id='change_frame'> Change    </button>
+    <div class="jumbotron">
+        
+        
+        <br>
+        <iframe id='main_frame'
+        	src="/" frameborder=0 scrolling=no allowtransparency=true width=80% height=800>
+        </iframe>
+ </div>
+ </div>
+ </div>
+ 
+ <script src='js/adminpanel.js'></script>
+ <script> $('#change_frame').on('click', function(){
+ 
+     $('#main_frame').attr('src','/all_Courses')
+ })
+ </script>
