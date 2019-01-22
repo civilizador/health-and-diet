@@ -1,23 +1,16 @@
 <% include ../partials/header_login     %>
-<style>
-    body {
-        background: lightgray;
-        margin: 0;
-        padding:  0;
-    }
-</style>
-<div class='login_page_wrapper'>
 
-
-    <div class='row'> 
+<div class='row'> 
         <div class="col-lg-12 col-md-12 col-sm-12">
              <h3 class='header_on_login whiteBackground'> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h3>  
         </div>
        <% include ../partials/landing/header    %> 
     </div>
     
-    <div class='row marginTop'>
-      <div class="col-lg-4 col-md-4 col-sm-12 counter_module">
+<div class='landing_page_wrapper'>
+
+    <div class='row'>
+      <div class="col-lg-5 col-md-5 col-sm-12 counter_module">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="btn btn-outline-secondary catalog_btn">
                  <i class="fas fa-folder-open folder_icon float-left"></i> 
@@ -27,35 +20,28 @@
             </div>
           <br>
           <div class="col-lg-12 col-md-12 col-sm-12">
-               <image width=30%; src='images/navy_box.png'> 
-                       0  
-               </image> 
-               <div class="btn btn-warning counter"> 
-                    <div  class='col-lg-12 col-md-12 col-sm-12 counter_span' >
-                        0 
-                    </div>
-              </div> 
-               <div class="btn btn-info counter">
-                    <div  class='col-lg-12 col-md-12 col-sm-12 counter_span'> 
-                        0  
-                    </div>
-              </div> 
+                <image class='rounded_corner' width=30%; src='images/red_box.png'> 
+       
+                <image class='rounded_corner' width=30%; src='images/green_box.png'> 
+
+                <image class='rounded_corner' width=30%; src='images/navy_box.png'> 
           </div>
          
           <div class="col-lg-12 col-md-12 col-sm-12 float-left">
-            <button type="button" class="btn btn-outline-warning catalog_btn">
-                <img width='50px' src='/images/certificate2.png' class='float-left '> <h4 > ACHIEVED CERTIFICATES </h4>
+            <button type="button" class="btn btn-outline-warning cert_btn">
+                <img width='50px' src='/images/cert_ico.png' class='float-left '><br><b> <p >ПОЛУЧЕННЫЕ СЕРТИФИКАТЫ</p> </b>
             </button> 
           </div>
       </div>
 
-        <div class="col-lg-7 col-md-7 col-sm-12 welcome_video_module whiteBackground">
+        <div class="col-lg-6 col-md-6 col-sm-12 welcome_video_module whiteBackground">
            
           <center>
-              <h4 class='font_navy'> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ</h4>
-              <video width="90%" height="320px" controls>
-                <source src="https://s3-eu-west-1.amazonaws.com/andop.online/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
-                 
+              <br>
+              <br>
+              <h5><b> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </b> </h5>
+              <video width="94%" height="290px" controls>
+                <source src="https://s3-eu-west-1.amazonaws.com/andop.online/SampleVideo_1280x720_1mb.mp4#t=1" type="video/mp4">
                  Your browser does not support the video tag.
               </video>
           </center>
@@ -88,3 +74,15 @@
     </div>
   
 </div>
+
+
+
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 footer_login">
+  <center><p>  © Все права Защищены. 2019</p></center>
+</div>
+
+
+</body>
+</html>

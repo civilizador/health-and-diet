@@ -13,8 +13,7 @@
     text-align: left;
     width: 100% !important;
     padding:10px;
-     color:navy;
-}
+ }
 div.login_page_wrapper {
     margin-top: 20vh;
     height: auto;
@@ -38,10 +37,10 @@ div.marginCenter {
     margin-left:38%;
     width: auto;
     padding: 15px;
-    height: auto!important;
+    height: 55px !important;
 }
-.font_navy {
-    color:navy;
+.font_theme {
+    color:rgb(73, 86, 120);
 }
 .admin_panel_button {
     position: absolute;
