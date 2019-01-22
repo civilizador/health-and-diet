@@ -34,10 +34,11 @@ div.login_page_wrapper {
 .blueHeading {
     color: rgb(73, 86, 120);
  }
-.marginCenter {
+div.marginCenter {
     margin-left:38%;
     width: auto;
     padding: 15px;
+    height: auto!important;
 }
 .font_navy {
     color:navy;
