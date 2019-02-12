@@ -1,6 +1,4 @@
- 
-
-
+  
 <% include ../partials/header_login     %>
 <style>
     div.card {
@@ -8,28 +6,29 @@
     }
 </style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<style>
-    body {
-        background: #eeeeee;
-        margin: 0;
-        padding:  0;
-    }
-</style>
 
-
+ <style>
+        body {
+            background: white !important;
+        }
+    </style>
     <div class='row'> 
         <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
-             <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+            <div style="width: 350px!important;" class="btn btn-outline-secondary">
+                <i class="fas fa-folder-open folder_icon float-left"></i> 
+                <a class='no_link_outlook' href='javascript:history.back()'>
+                  <div class='col-lg-6 col-md-6 col-sm-6'>
+                    ВЫБОР УРОКА
+                  </div>
+                </a>  
+            </div>  
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 profile_header1">
-                    <div class="float-left">
-                          <img width='50px' src='/images/logo.png' class='float-left '> 
-                          <h4 class='float-left shiftFromLeft'>ACADEMY OF <br> NUTRITION AND DIET  </h4> 
-                    </div>
-                    <a href='user/<%-currentUser._id%>'> <img width='5%' src='/images/user.png' class='float-right profilePhoto'>  </a>
-        </div> 
+        <br>
+        <hr class='dividing_hr'>
+         <% include ../partials/landing/header    %>  
     </div>
     
+ 
     <div class='row marginTop'>
         
         
@@ -38,7 +37,7 @@
        
             <div  class="form-group">
                 
-                    <label>Категория Урока</label>
+                    <label>Выбор Урока</label>
                         <select id='selector_for_lesson' name='category' class='form-control' value=''>
                              <% lessons.forEach(function(lesson){ %>
                              <option lesson_id='<%- lesson._id %>' > Урок №<%=lesson.number%></option>
@@ -51,7 +50,6 @@
          
         <!-- All Courses -->
         <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list' >
-      
         </div>
         <!-- END of All Courses -->    
         
@@ -76,12 +74,19 @@
             response.forEach(function(part){
                 // alert(part.title)
                 let node =  ` 
-                                <div class='card' style='width: 18rem; padding:10px; margin:10px; border-radius: 15px;'>
-                                     <a href='/parts/${part._id}'> <img class='card-img-top' src='https://s3-eu-west-1.amazonaws.com/andop.online/images/${part.image}.jpg' alt="Card image cap"> </a>
-                                      <div class='card-body">
+                                <div class='card' style='width: 18rem; padding:10px; margin:10px; border-radius: 15px; height:460px;'>
+                                     <a href='/parts/${part._id}'> <img height='180px' class='card-img-top' src='${part.image}' alt="Card image cap"> </a>
+                                      <div class='card-body'>
                                             <h5 class='card-title'>${part.title}</h5>
                                             <p class='card-text'>${part.description.slice(0,120)+' ... '}</p>
-                                            <a href='#' class='btn btn-primary'>Go somewhere</a>
+                                            
+                                            <center>
+                                            <div class='bottom_position'>
+                                            <h6> Продолжительность ${part.lenght}</h6>
+                                            <br><br>
+                                            <a href='/parts/${part._id}' class='btn btn-success bottom_position'>Go somewhere</a>
+                                            </div>                                      
+                                            </center>
                                       </div>
                                 </div>
                             `

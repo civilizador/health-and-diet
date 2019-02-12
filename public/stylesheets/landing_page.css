@@ -12,11 +12,6 @@
 
 /*  counter module */
 
-.counter_module {
-  margin: 0 auto;
-  border-radius: 15px;
-}
-
 .catalog_btn {
   width: 100%;
    height: 60px;
@@ -30,25 +25,20 @@
    height: 60px;
    text-align: center !important;
    margin-top: 1em;
+   margin-bottom:  1em;
    padding: 5px;
    font-size: 13px;
 }
-
 .welcome_video_module {
    height: auto;
   float: left;
   margin: 0 auto;
 }
-
 .counter {
-  float: left;
-  width:31%;
-  margin-right:2.2%;
-  height:110px;
+  width:31% !important;
+  margin-right: 2%;
   text-align: center;
-  display:flex;
 }
-
 .counter_span {
   font-size: 3em;
   height: 50%;
@@ -56,47 +46,35 @@
   color: white !important;
   padding-left: 0 auto !important;
 }
-
 .profile_header1 {
   background-color: white !important;
    height: 65px;
-   width: 95% !important;
-   margin-right: 1px !important;
-   padding-right: 1px !important;
-}
-
+   width: 100% !important;
+ }
 .whiteBackground {
   background-color: white !important;
 }
-
 .folder_icon {
   font-size: 3rem;
 }
-
- 
-
 .marginTop {
   margin-left: 40px; ;
   margin-top: 10vh !important;
   height: auto;
 }
-
 .counter_module {
-  background-color: white!important;
-  height: 280px !important;
-   
+  background-color: none!important;
+  height: auto !important;
+  margin: 0 auto;
+  border-radius: 15px;
 }
- 
-
 .no_link_outlook {
   color: gray !important;
   text-decoration: none !important;
 }
 .no_link_outlook:hover {
     color: white !important;
-
 }
-
 .all_lessons_select {
   background-color: white!important;
   height: 150px !important;
@@ -110,12 +88,10 @@
   margin-bottom: 3vh;
   }
 img.course_description_image {
- 
   border-radius: 5px;
   float: left;
-  width: 35%;
+  width: 23vw;
   margin: 20px;
-   
 }
  .landing_page_wrapper{
    margin-top: 10vh;
@@ -123,7 +99,8 @@ img.course_description_image {
    margin-left: 4%;
  }
 .course_list_wrapper {
-  height: 250px;
+  height: auto;
+  max-height: 350px;
   background-color: white;
   float: right;
   margin-left: 5vw;
@@ -138,7 +115,34 @@ img.course_description_image {
   border: 1px solid silver;
   border-radius: 50%;
 }
-
 .rounded_corner {
   border-radius: 10px;
+}
+.counterSpan {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+ 
+}
+div.c1{
+  background-color: red !important;
+  height: 150px !important;
+  border:1px solid red;
+  border-radius: 10px;
+}
+div.c2{
+  background-color: green !important;
+  height: 150px !important;
+  border:1px solid green;
+  border-radius: 10px;
+}
+div.c3{
+  background-color: navy !important;
+  height: 150px !important;
+  border:1px solid navy;
+  border-radius: 10px;
+}
+#counter_module {
+  background-color: white!important;
+  height: auto;
 }

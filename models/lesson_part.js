@@ -12,6 +12,7 @@
                 related_to_course: String,
                 url: String,
                 description: String,
+                description2: String,
                 completed: Boolean,
                 lenght: String,
                 comments: [

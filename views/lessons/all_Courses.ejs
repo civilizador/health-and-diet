@@ -1,9 +1,21 @@
 <% include ../partials/header_login     %>
-
-    <div class='row'> 
-        <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
-             <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+    <style>
+        body {
+            background: #f6f5f3 !important;
+        }
+    </style>
+    <div class='row whiteBackground' > 
+        <div class="col-lg-12 col-md-12 col-sm-12  header_on_login">
+            <div style="width: 350px!important;" class="btn btn-outline-secondary">
+                <i class="fas fa-folder-open folder_icon float-left"></i> 
+                <a class='no_link_outlook' href='/all_Courses'>
+                  <div  class='col-lg-6 col-md-6 col-sm-6 '>
+                    ВЫБРАТЬ КАТЕГОРИЮ   <br> КУРСА ВИРТУАЛЬНОГО ОБУЧЕНИЯ
+                  </div>
+                </a>  
+            </div>  
         </div>
+    
          <% include ../partials/landing/header    %>  
     </div>
     
@@ -26,19 +38,20 @@
          <!-- END of Category selecting DropDown -->
          
         <!-- All Courses -->
-        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list'>
+        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12 whiteBackground' id='wrapper_for_courses_list'>
         
             <% course.forEach(function(course){ %>
-                <div class="paragraphs course_list_wrapper">
+                <div class="paragraphs">
                     <div class="row">
                         <div class="span4">
                           <a href='all_courses/<%= course._id %>'><img class='course_description_image' src='/images/<%= course.image %>.jpg' /> </a>
                           <div class="content-heading"><h4><%= course.title %></h4></div>
                           <p><%= course.description %></p>
-                            <div><button><img />Стоимость</button>
-                                <button><img /> Содержание</button>
-                                    <button><img /> Сертификат</button>
-                                        <button><img /> Купить курс</button>
+                            <div>
+                                <div class='course_button float-left'><img class='button_icon1' src='https://s3-eu-west-1.amazonaws.com/andop.online/icons/price_icon.png' />Стоимость</div>
+                                <div class='course_button float-left'><img class='button_icon1' src='https://s3-eu-west-1.amazonaws.com/andop.online/icons/soderjanie.png'/> Содержание</div>
+                                <div class='course_button float-left'><img class='button_icon1' src='https://s3-eu-west-1.amazonaws.com/andop.online/icons/certificate.png'/> Сертификат</div>
+                                <div class='course_button float-left'><img class='button_icon1' src='https://s3-eu-west-1.amazonaws.com/andop.online/icons/purchase.png'/> Купить курс</div>
                             </div>
                         </div>
                     </div>
@@ -77,6 +90,12 @@
                                             <h4>${courses.title}</h4>
                                             </div>
                                             <p>${courses.description}</p>
+                                            <div class='course_list_buttons'>
+                                            <button><img />Стоимость</button>
+                                            <button><img /> Содержание</button>
+                                            <button><img /> Сертификат</button>
+                                            <button><img /> Купить курс</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div> `

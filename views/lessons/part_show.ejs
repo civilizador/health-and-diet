@@ -1,21 +1,33 @@
-
 <% include ../partials/header_login     %>
-<div class='row'> 
-        <div class="col-lg-12 col-md-12 col-sm-12">
-             <h2 class='header_on_login whiteBackground'> Просмотр Урока </h2>  
+    <style>
+        body {
+            background: #f6f5f3 !important;
+        }
+    </style>
+    <div class='row'> 
+        <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
+            <div style="width: 350px!important;" class="btn btn-outline-secondary">
+                <i class="fas fa-folder-open folder_icon float-left"></i> 
+                <a class='no_link_outlook' href='/all_Courses'>
+                  <div class='col-lg-6 col-md-6 col-sm-6'>
+                    ПРОСМОТР УРОКА
+                  </div>
+                </a>  
+            </div>  
         </div>
-       <% include ../partials/landing/header    %> 
-</div>
-    
+        <br>
+        <hr class='dividing_hr'>
+         <% include ../partials/landing/header    %>  
+    </div>
     
 <div class='row marginTop'>
     
     
-     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 all_lessons_select">
+     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 all_lessons_select">
        
             <div  class="form-group">
                 
-                    <label>Категория Урока</label>
+                    <label>Выбор Части Урока</label>
                         <select id='selector_for_course' name='category' class='form-control' value=''>
                              <% all_parts.forEach(function(parts){ %>
                              <option><%=parts.title%></option>
@@ -25,10 +37,10 @@
               
     </div>
         
-    <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12' id='wrapper_for_courses_list'>
+    <div class='col-lg-7 col-md-7 col-sm-12 col-xs-12 whiteBackground' id='wrapper_for_courses_list'>
  
         <div class="btn btn-info btn-lg btn-block" >
-            <h2 id='part_name_header'> <%= part[0].title %> </h2>
+            <h2 id='part_name_header' class='float-left'> <%= part[0].title %> </h2>
         </div>     
         <br>
         <hr>
@@ -41,6 +53,7 @@
         <div style='padding:15px;'>
             <h2 id='part_name_header'> <%= part[0].title %> </h2>      
             <h5 id='part_name_header'> <%= part[0].description %> </h5>
+            <h5 id='part_name_header'> <%= part[0].description2 %> </h5>
         </div>
               
     </div>
