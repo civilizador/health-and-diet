@@ -4,6 +4,7 @@
     const   Lesson =            require("../models/lessonmod");
     const   Parts =             require("../models/lesson_part");
     const   middleware  =       require("../middleware.js");
+    const   payJS       =       require("../public/js/pay")
     const   flash    =          require("connect-flash");
     const   categories =        ['CourseCategory1','CourseCategory2','CourseCategory3','CourseCategory4','CourseCategory5','CourseCategory6','CourseCategory7','CourseCategory8'];
     const   aws =               require('aws-sdk');
@@ -139,7 +140,7 @@
                         });
             });
 
-        // 5. "SHOW" ROUTE COURSE.
+        // 5. "SHOW" COURSE ROUTE.
         
             app.get("/all_courses/:id", middleware.isLoggedIn,  async function (req, res) {
                 let foundCourse = await Course.findById(req.params.id);
@@ -157,6 +158,10 @@
                 });
                  
             });
+        
+        // 6. "PURCHASE COURSE" ROUTE
+        
+         payJS(app);
 
 // LESSON ROUTES
 
