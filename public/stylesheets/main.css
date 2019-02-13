@@ -5,6 +5,9 @@
 #submitRegister {
     display:  none;
 }
+#part_name_header {
+     font-size: 32px;
+}
 .submitButton {
     width: 100% !important;
 }
@@ -66,10 +69,10 @@ div.course_list_buttons{
     bottom: 0;
 }
 .course_button {
-      border: 1px solid #e9ecef73;
-      border-radius: 5px;
-          background:  #e9ecef73!important;
-
+    border: 1px solid #e9ecef73;
+    border-radius: 5px;
+    background:  #e9ecef73!important;
+    margin-left: 5px;
      
 }
 .dividing_hr {

@@ -15,8 +15,7 @@
                 </a>  
             </div>  
         </div>
-        <br>
-        <hr class='dividing_hr'>
+         <hr class='dividing_hr'>
          <% include ../partials/landing/header    %>  
     </div>
     
@@ -26,7 +25,6 @@
      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 all_lessons_select">
        
             <div  class="form-group">
-                
                     <label>Выбор Части Урока</label>
                         <select id='selector_for_course' name='category' class='form-control' value=''>
                              <% all_parts.forEach(function(parts){ %>
@@ -39,8 +37,8 @@
         
     <div class='col-lg-7 col-md-7 col-sm-12 col-xs-12 whiteBackground' id='wrapper_for_courses_list'>
  
-        <div class="btn btn-info btn-lg btn-block" >
-            <h2 id='part_name_header' class='float-left'> <%= part[0].title %> </h2>
+        <div style='height:70px;' class="btn btn-info btn-lg btn-block" >
+            <p id='part_name_header' class='float-left'> <%= part[0].title %> </p>
         </div>     
         <br>
         <hr>

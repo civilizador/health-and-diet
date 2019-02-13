@@ -1,20 +1,24 @@
 <% include ../partials/header_login     %>
-<style>
-    body {
-        background: #eeeeee;
-        margin: 0;
-        padding:  0;
-    }
-</style>
-<div class='login_page_wrapper'>
-
-
-    <div class='row'> 
-        <div class="col-lg-12 col-md-12 col-sm-12 whiteBackground">
-             <h2 class='header_on_login '> ДОБРО ПОЖАЛОВАТЬ НА ОНЛАЙН КУРСЫ </h2>  
+ <style>
+        body {
+            background: #f6f5f3 !important;
+        }
+    </style>
+    <div class='row whiteBackground' > 
+        <div class="col-lg-12 col-md-12 col-sm-12  header_on_login">
+            <div style="width: 350px!important;" class="btn btn-outline-secondary">
+                <i class="fas fa-folder-open folder_icon float-left"></i> 
+                <a class='no_link_outlook' href='/all_Courses'>
+                  <div  class='col-lg-6 col-md-6 col-sm-6 '>
+                    ВЫБРАТЬ КАТЕГОРИЮ   <br> КУРСА ВИРТУАЛЬНОГО ОБУЧЕНИЯ
+                  </div>
+                </a>  
+            </div>  
         </div>
-         <% include ../partials/landing/header    %> 
+    
+         <% include ../partials/landing/header    %>  
     </div>
+    
     
     <div class='row marginTop'>
         

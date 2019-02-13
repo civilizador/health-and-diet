@@ -79,6 +79,7 @@
   background-color: white!important;
   height: 150px !important;
   padding: 15px;
+  margin-right: 5vh;
    float: left;
    display: table-column;
 }
@@ -145,4 +146,7 @@ div.c3{
 #counter_module {
   background-color: white!important;
   height: auto;
+}
+#wrapper_for_courses_list {
+  padding: 0!important
 }
