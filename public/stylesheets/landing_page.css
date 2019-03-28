@@ -38,6 +38,10 @@
   width:31% !important;
   margin-right: 2%;
   text-align: center;
+
+}
+.counter > div {
+    color: white;
 }
 .counter_span {
   font-size: 3em;
@@ -88,12 +92,7 @@
   margin-top: 3vh;
   margin-bottom: 3vh;
   }
-img.course_description_image {
-  border-radius: 5px;
-  float: left;
-  width: 23vw;
-  margin: 20px;
-}
+
  .landing_page_wrapper{
    margin-top: 10vh;
    width: 92%;
@@ -125,22 +124,20 @@ img.course_description_image {
   font-size: 50px;
  
 }
+.counterBox {display: flex;}
 div.c1{
-  background-color: red !important;
+  background-color: #da251c;
   height: 150px !important;
-  border:1px solid red;
   border-radius: 10px;
 }
 div.c2{
-  background-color: green !important;
+  background-color: #b8dc7c;
   height: 150px !important;
-  border:1px solid green;
   border-radius: 10px;
 }
 div.c3{
-  background-color: navy !important;
+  background-color: #495678;
   height: 150px !important;
-  border:1px solid navy;
   border-radius: 10px;
 }
 #counter_module {

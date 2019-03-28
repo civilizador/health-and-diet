@@ -11,6 +11,23 @@
 .submitButton {
     width: 100% !important;
 }
+
+/* All Cources */
+img.course_description_image {
+  border-radius: 5px;
+  float: left;
+  width: 20vw;
+  margin: 20px;
+}
+.all_course_4buttons_div {
+    display: flex;
+    font-size: 0.7vw;
+}
+.all_Courses_single_Course {
+    margin-bottom: 3vh;
+    border-radius: 15px;
+ }
+
 .header_on_login {
     border-bottom: 2px solid silver;
     text-align: left;
